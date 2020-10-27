@@ -7,17 +7,11 @@ export interface ICourse {
 }
 
 export class Course implements ICourse {
-    id: number;
-    title: string;
-    creationDate: string;
-    duration: number;
-    description: string;
-
-    constructor(id: number, title: string, creationDate: string, duration: number, description: string) {
-        this.id = id;
-        this.title = title;
-        this.creationDate = creationDate;
-        this.duration = duration;
-        this.description = description;
-    }
+    constructor(
+        public id: number, 
+        public title: string, 
+        public creationDate: string, 
+        public duration: number, 
+        public description: string
+    ) {}
 }

@@ -5,13 +5,9 @@ export interface IUserEntity {
 }
 
 export class UserEntity implements IUserEntity {
-    id: number;
-    FirstName: string;
-    lastName: string;
-
-    constructor(id: number, FirstName: string, lastName: string) {
-        this.id = id;
-        this.FirstName = FirstName;
-        this.lastName = lastName;
-    }
+    constructor(
+        public id: number,
+        public FirstName: string,
+        public lastName: string
+    ) {}
 }
