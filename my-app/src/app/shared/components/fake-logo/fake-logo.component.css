@@ -1,0 +1,23 @@
+.fake-logo {
+    display: flex;
+    align-items: center;
+}
+
+.fake-logo-img {
+    height: 28px;
+    width: 28px;
+    margin: 0 12px 0 0;
+    align-self: center;
+  }
+  
+  .fake-logo-text {
+    color: var(--white);
+    font-family: var(--my-font-family);
+    font-size: 17px;
+    line-height: 17px;
+    font-stretch: normal;
+    letter-spacing: 0.5px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+  }

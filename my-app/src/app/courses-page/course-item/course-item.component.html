@@ -1,1 +1,35 @@
-<p>course-item works!</p>
+<div class="item-content">
+    <div class="item-section">
+        <div class="item-header">
+            <div class="item-title">{{course.title}}</div>
+            <section class="time-date-section">
+                <div class="time-section">
+                    <p><img class="icon" src="assets/icons/ic_clock.svg" alt="img">
+                        <span>{{course.duration.hours}}h {{course.duration.minutes}}min</span>
+                    </p>
+                </div>
+                <div class="date-section">
+                    <p ><img class="icon" src="assets/icons/ic_calendar.svg" alt="img">
+                        <span>{{course.creationDate | date: 'shortDate'}}</span>
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <section class="item-descr">
+            <p class="item-description">{{course.description}}</p>
+        </section>
+    </div>
+
+    <div class="buttons-section">
+        <button class="edit-button button" (click)="onEdit()">
+            <img src="assets/icons/ic_edit.svg" alt="img">
+            <span>Edit</span>
+        </button>
+        <button class="delete-button button" (click)="onDelete()">
+            <img src="assets/icons/ic_delete.svg" alt="img">
+            <span class="del-text">Delete</span>
+        </button>
+    </div>
+
+</div>

@@ -1,0 +1,1 @@
+export { CourseItemComponent } from './course-item.component';

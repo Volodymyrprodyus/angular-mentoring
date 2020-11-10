@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-load-more',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadMoreComponent implements OnInit {
 
+  @Output() loadmore = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onLoadMoreCourses(): void {
+    console.log('onLoadMoreCourses');
+    this.loadmore.emit();
+  }
 }

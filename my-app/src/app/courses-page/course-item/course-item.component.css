@@ -1,0 +1,122 @@
+:host {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    border-radius: 6px;
+    background: var(--white);
+    box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.item-content {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+}
+
+.item-section {
+    display: block;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 60px;
+}
+
+
+.item-descr {
+display: block;
+}
+
+.item-title {
+    color: var(--darkNight);
+    font-size: 24px;
+    font-family: var(--my-font-family);
+    font-weight: 600;
+    align-self: center;
+    padding: 0 0 5px 0;
+}
+
+.time-date-section {
+    line-height: 18px;
+    letter-spacing: 0;
+    color: var(--fluideGray);
+    font-size: 14px;
+    font-family: var(--my-font-family);
+    justify-content: space-between;
+    display: flex;
+}
+
+.date-section {
+    margin-left: 20px;
+    align-self: center;
+}
+
+.time-section {
+    align-self: center;
+}
+
+.time-section > p,
+.date-section > p {
+  display: flex;
+  align-self: center;
+}
+
+.buttons-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.item-description {
+    line-height: 18px;
+    letter-spacing: 0;
+    color: var(--thinnerGray);
+    font-size: 14px;
+    font-family: var(--my-font-family);
+    text-transform: none;
+    margin-right: 60px;
+}
+
+.button {
+    border-radius: 3px;
+    background: deepskyblue;
+    padding: 6px 9px;
+    color: var(--white);
+    font-size: 13px;
+    font-family: var(--my-font-family);
+    font-weight: 500;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.delete-button .button {
+    display: flex;
+    align-items: center;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: var(--deepBlue);
+}
+
+.button:active {
+    background-color: var(--deepBlue);
+}
+
+.button > img {
+    height: 15px;
+    margin-right: 6px;
+}
+
+.icon {
+    margin: 0 6px;
+}
+
+.delete-button {
+    margin-left: 15px;
+}
+
