@@ -11,7 +11,6 @@ import { BreadcrumbsModule } from '../shared/components/breadcrumbs/breadcrumbs.
 import { CourseSearchComponent } from './course-search/course-search.component';
 import { CoursesListComponent } from './courses-list/courses-list.component';
 import { CourseItemComponent } from './course-item/course-item.component';
-import { LoadMoreComponent } from './load-more/load-more.component';
 
 
 
@@ -21,7 +20,6 @@ import { LoadMoreComponent } from './load-more/load-more.component';
     CourseSearchComponent,
     CoursesListComponent,
     CourseItemComponent,
-    LoadMoreComponent
   ],
   imports: [
     CommonModule,

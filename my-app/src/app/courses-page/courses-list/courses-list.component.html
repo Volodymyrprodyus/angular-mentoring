@@ -1,4 +1,8 @@
 <app-course-item *ngFor="let course of courses" [course]="course" (deleteCourse)="onCourseDelete($event)"
     (editCourse)="onCourseEdit($event)">
 </app-course-item>
-<app-load-more></app-load-more>
+<section>
+    <button class="load-more-button">
+        <a class="load-more-text" (click)="onLoadMoreCourses()">Load more</a>
+    </button>
+</section>

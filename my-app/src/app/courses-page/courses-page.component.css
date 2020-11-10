@@ -2,7 +2,12 @@
     background-color: var(--whiteFoggy);
     display: block;
     min-height: calc(100vh - 55px);
-    padding-bottom: 25px;
+    padding-bottom: 15px;
+}
+
+.log-buttons {
+    display: flex;
+    align-content: center;
 }
 
 .breadcrumbs-text {
@@ -18,12 +23,11 @@
 .add-button {
     border-radius: 3px;
     background: deepskyblue;
-    margin: 0 10% 15px auto;
+    margin: 0 15% 10px auto;
     padding: 4px 13px;
     display: flex;
     align-items: center;
     line-height: 24px;
-    letter-spacing: -0.1px;
     color: var(--white);
     margin-left: auto;
     font-size: 14px;
@@ -49,4 +53,21 @@
     font-size: 25px;
     line-height: 20px;
     margin-right: 8px;
+}
+
+@media only screen and (max-width: 650px) {
+    .add-button {
+        border-radius: 3px;
+        background: deepskyblue;
+        margin: 3px 15% 10px auto;
+        padding: 2px 7px;
+        display: flex;
+        align-items: center;
+        line-height: 14px;
+        color: var(--white);
+        margin-left: auto;
+        font-size: 12px;
+        font-weight: 500;
+        border: none;
+    }
 }

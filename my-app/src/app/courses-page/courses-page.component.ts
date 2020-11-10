@@ -56,4 +56,8 @@ export class CoursesPageComponent implements OnInit {
     console.log(`Edit course ${course.title} with id ${course.id}`);
   }
 
+  onLoadMoreCourses(): void {
+    console.log('Load more courses');
+  }
+
 }

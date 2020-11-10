@@ -27,4 +27,7 @@ export class CoursesListComponent implements OnInit {
     this.editCourse.emit(course);
   }
 
+  onLoadMoreCourses(): void {
+    this.loadmoreCourse.emit();
+  }
 }
