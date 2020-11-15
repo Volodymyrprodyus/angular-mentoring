@@ -8,18 +8,14 @@ import { FakeLogoModule } from '../shared/components/fake-logo/fake-logo.module'
 import { LogInButtonModule } from '../shared/components/log-in-button/log-in-button.module';
 import { LogOutButtonModule } from '../shared/components/log-out-button/log-out-button.module';
 import { BreadcrumbsModule } from '../shared/components/breadcrumbs/breadcrumbs.module';
-import { CourseSearchComponent } from './course-search/course-search.component';
-import { CoursesListComponent } from './courses-list/courses-list.component';
-import { CourseItemComponent } from './course-item/course-item.component';
+import { CourseSearchModule } from './course-search';
+import { CoursesListModule } from './courses-list/courses-list.module';
 
 
 
 @NgModule({
   declarations: [
     CoursesPageComponent,
-    CourseSearchComponent,
-    CoursesListComponent,
-    CourseItemComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +25,8 @@ import { CourseItemComponent } from './course-item/course-item.component';
     FakeLogoModule,
     LogInButtonModule,
     LogOutButtonModule,
+    CourseSearchModule,
+    CoursesListModule,
   ],
   exports: [
     CoursesPageComponent

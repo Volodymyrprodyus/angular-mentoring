@@ -5,6 +5,10 @@
     padding-bottom: 15px;
 }
 
+app-course-search, app-courses-list {
+  margin: 0 15%;
+}
+
 .log-buttons {
     display: flex;
     align-content: center;

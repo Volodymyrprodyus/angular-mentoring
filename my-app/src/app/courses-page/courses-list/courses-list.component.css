@@ -1,6 +1,9 @@
 :host {
-    margin: 0 15%;
     display: block;
+}
+
+app-course-item {
+    margin-bottom: 24px;
 }
 
 .load-more-button {

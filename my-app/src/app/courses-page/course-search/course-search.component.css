@@ -29,7 +29,7 @@
 }
 
 .course-search:placeholder-shown {
-  background-image: url('../../../assets/icons/magnifying_glass.svg');
+  background-image: url('src/assets/icons/magnifying_glass.svg');
   background-repeat: no-repeat;
   background-position: 15px;
   transition: background-image 0.2s ease-in-out;
