@@ -1,6 +1,32 @@
-<p>courses-page works!</p>
+<app-header>
+    <app-fake-logo></app-fake-logo>
+    <div class="log-buttons">
+        <app-log-in-button></app-log-in-button>
+        <app-log-out-button></app-log-out-button>
+    </div>
+</app-header>
+<app-breadcrumbs>
+    <a
+        routerLink="/"
+        class="breadcrumbs-text"
+    >
+        Courses
+    </a>
+</app-breadcrumbs>
 <app-course-search></app-course-search>
-<app-add-course-button></app-add-course-button>
-<app-courses-list></app-courses-list>
-<app-course-item></app-course-item>
-<app-load-more></app-load-more>
+
+<button
+    class="add-button"
+    (click)="onAddNewCourse()"
+>
+    <div class="add-button-icon">+</div>
+    Add course
+</button>
+
+<app-courses-list
+    [courses]="courses"
+    (delete)="onDeleteCourse($event)"
+    (edit)="onEditCourse($event)"
+    (loadmoreCourse)="onLoadMoreCourses()"
+>
+</app-courses-list>

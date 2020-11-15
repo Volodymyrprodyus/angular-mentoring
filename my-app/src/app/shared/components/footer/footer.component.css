@@ -1,0 +1,17 @@
+:host {
+    display: block;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    background: var(--blackHeader);
+    height: 55px;
+    width: 100%;
+    padding: 20px 15%;
+}
+
+.footer-text {
+    color: var(--fluideGray);
+    font-size: 12px;
+    font-family: var(--my-font-family);
+    text-align: right;
+}

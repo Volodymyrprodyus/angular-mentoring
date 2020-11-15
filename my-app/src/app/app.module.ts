@@ -3,21 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoursesPageModule } from './courses-page/courses-page.module';
-import { HeaderModule } from './shared/components/header/header.module';
-import { FooterModule } from './shared/components/footer/footer.module';
 import { AppComponent } from './app.component';
+import { FooterModule } from './shared/components/footer/footer.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeaderModule,
     CoursesPageModule,
-    FooterModule
+    FooterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

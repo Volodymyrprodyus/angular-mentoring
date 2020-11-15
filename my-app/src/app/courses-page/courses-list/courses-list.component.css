@@ -1,0 +1,38 @@
+:host {
+    display: block;
+}
+
+app-course-item {
+    margin-bottom: 24px;
+}
+
+.load-more-button {
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    border: none;
+    background-color: var(--white);
+    box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
+    padding: 6px;
+    text-align: center;
+}
+
+.load-more-button:hover {
+    cursor: pointer;
+    background-color: var(--darkNightLight);
+}
+
+.load-more-text {
+    line-height: 24px;
+    letter-spacing: 0;
+    color: var(--floverBlue);
+    font-size: 12px;
+    font-family: var(--my-font-family);
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.load-more-text:hover {
+    color: var(--white);
+    cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.login-button {
+    display: flex;
+    justify-content: center;
+    line-height: 24px;
+    height: 24px;
+    color: var(--white);
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    background-color: transparent;
+    margin-right: 24px;
+}
+
+.log-icon {
+    height: 14px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
