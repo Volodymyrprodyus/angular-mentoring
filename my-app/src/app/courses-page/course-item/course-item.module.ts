@@ -9,4 +9,4 @@ import { CourseItemComponent } from './course-item.component';
   exports: [CourseItemComponent],
 })
 
-export class CourseItemModule {};
+export class CourseItemModule {}

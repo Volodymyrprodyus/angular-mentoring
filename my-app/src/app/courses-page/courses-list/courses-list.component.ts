@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Course } from 'src/app/models';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Course } from '../../models';
 
 @Component({
   selector: 'app-courses-list',
@@ -7,7 +7,7 @@ import { Course } from 'src/app/models';
   styleUrls: ['./courses-list.component.css']
 })
 
-export class CoursesListComponent implements OnInit {
+export class CoursesListComponent {
   @Input() courses: Course[];
 
   @Output() editCourse = new EventEmitter<Course>();
@@ -15,9 +15,6 @@ export class CoursesListComponent implements OnInit {
   @Output() loadmoreCourse = new EventEmitter<void>();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   onCourseDelete(course: Course): void {
     this.deleteCourse.emit(course);
@@ -27,7 +24,7 @@ export class CoursesListComponent implements OnInit {
     this.editCourse.emit(course);
   }
 
-  onLoadMoreCourses(): void {
-    this.loadmoreCourse.emit();
+  onLoadMoreCourses(value?: any): void {
+    this.loadmoreCourse.emit(value);
   }
 }
