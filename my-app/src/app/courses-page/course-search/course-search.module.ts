@@ -9,4 +9,4 @@ import { CourseSearchComponent } from './course-search.component';
   exports: [CourseSearchComponent],
 })
 
-export class CourseSearchModule {};
+export class CourseSearchModule {}

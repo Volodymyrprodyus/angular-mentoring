@@ -9,4 +9,4 @@ import { CoursesListComponent } from './courses-list.component';
   exports: [CoursesListComponent],
 })
 
-export class CoursesListModule {};
+export class CoursesListModule {}

@@ -1,4 +1,4 @@
-import { Time } from "@angular/common";
+import { Time } from '@angular/common';
 
 export interface ICourse {
     id: number;
@@ -10,10 +10,10 @@ export interface ICourse {
 
 export class Course implements ICourse {
     constructor(
-        public id: number, 
-        public title: string, 
-        public creationDate: Date, 
-        public duration: Time, 
+        public id: number,
+        public title: string,
+        public creationDate: Date,
+        public duration: Time,
         public description: string
     ) {}
 }
