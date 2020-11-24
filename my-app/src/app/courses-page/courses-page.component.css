@@ -59,6 +59,18 @@ app-course-search, app-courses-list {
     margin-right: 8px;
 }
 
+.no-course-available {
+    margin: 3% 15%;
+    text-align: center;
+    color: var(--darkNight);
+    border-radius: 6px;
+    background: var(--white);
+    box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
+    padding: 10px;
+    border: 2px solid transparent;
+    font-family: var(--my-font-family);
+}
+
 @media only screen and (max-width: 650px) {
     .add-button {
         border-radius: 3px;

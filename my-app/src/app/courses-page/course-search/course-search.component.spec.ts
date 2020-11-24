@@ -33,10 +33,10 @@ describe('CourseSearchComponent', () => {
   });
 
   it('should show correct result when searc is active', () => {
-    console.log = jasmine.createSpy('log');
     component.inputValue = searchValue;
-    fixture.detectChanges();
+    spyOn(component.searchPhrase, 'emit');
+
     component.onClick();
-    expect(console.log).toHaveBeenCalledWith(`You try to find: ${searchValue}`);
+    expect(component.searchPhrase.emit).toHaveBeenCalledWith(searchValue);
   });
 });

@@ -28,5 +28,11 @@
     (delete)="onDeleteCourse($event)"
     (edit)="onEditCourse($event)"
     (loadmoreCourse)="onLoadMoreCourses()"
+    *ngIf="isCoursesAvailable; else noDataMessage"
 >
 </app-courses-list>
+<ng-template #noDataMessage>
+    <div class="no-course-available">
+        <h3>No data. Feel free to add new course.</h3>
+    </div>
+</ng-template>
