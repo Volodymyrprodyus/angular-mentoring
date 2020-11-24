@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Course } from '../../models/course.interface';
+import { Course } from '../../models/course.model';
 import { CourseItemComponent } from './course-item.component';
 
 @Component({

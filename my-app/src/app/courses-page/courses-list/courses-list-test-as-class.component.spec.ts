@@ -1,4 +1,4 @@
-import { Course } from 'src/app/models/course.interface';
+import { Course } from 'src/app/models/course.model';
 
 import { CoursesListComponent } from './courses-list.component';
 

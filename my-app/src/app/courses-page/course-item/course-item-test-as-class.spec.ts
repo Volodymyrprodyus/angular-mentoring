@@ -1,4 +1,4 @@
-import { Course } from 'src/app/models/course.interface';
+import { Course } from 'src/app/models/course.model';
 import { CourseItemComponent } from './course-item.component';
 
 const mockCourse: Course = {
@@ -25,9 +25,9 @@ describe('CourseItemComponent', () => {
   });
 
   it('should delete course-item', () => {
-	spyOn(component.delete, 'emit');
-    
-	component.onDelete();
-	expect(component.delete.emit).toHaveBeenCalledWith(mockCourse);
-      });
+    spyOn(component.delete, 'emit');
+
+    component.onDelete();
+    expect(component.delete.emit).toHaveBeenCalledWith(mockCourse);
+  });
 });
