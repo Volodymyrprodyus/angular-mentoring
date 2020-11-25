@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Course } from '../../models/course.model';
+import { DurationPipe } from '../pipes/duration.pipe';
 import { CourseItemComponent } from './course-item.component';
 
 @Component({
@@ -18,7 +19,7 @@ class CourseItemHostTestComponent {
     id: 1,
     title: 'Video Course 1. Name tag',
     creationDate: new Date('2020/10/10'),
-    duration: { hours: 1, minutes: 28 },
+    duration: 28,
     description: 'test description',
   };
 
@@ -46,7 +47,7 @@ describe('CourseItemComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseItemComponent, CourseItemHostTestComponent],
+      declarations: [CourseItemComponent, CourseItemHostTestComponent, DurationPipe],
     });
     fixture = TestBed.createComponent(CourseItemHostTestComponent);
     testingHost = fixture.componentInstance;
@@ -66,16 +67,17 @@ describe('CourseItemComponent', () => {
     const courseTimeElem = courseTime.nativeElement;
     const courseDescriptionElem = courseDescription.nativeElement;
 
-    expect(courseTitleElem.textContent).toContain(testingHost.course.title);
+    const hours = Math.floor(testingHost.course.duration / 60);
+    const minutes = Math.floor(testingHost.course.duration % 60);
+    const mockCourseDuration = (hours) ? `${hours} h ${minutes} min` : `${minutes} min`;
+
+    expect(courseTitleElem.textContent).toContain(testingHost.course.title.toUpperCase());
     expect(courseDateElem.textContent).toContain(
       `${testingHost.mockDate.month}/${testingHost.mockDate.day}/${testingHost.mockDate.year}`
     );
-    expect(courseTimeElem.textContent).toContain(
-      testingHost.course.duration.hours
-    );
-    expect(courseTimeElem.textContent).toContain(
-      testingHost.course.duration.minutes
-    );
+
+    expect(courseTimeElem.textContent).toContain(mockCourseDuration);
+
     expect(courseDescriptionElem.textContent).toContain(
       testingHost.course.description
     );

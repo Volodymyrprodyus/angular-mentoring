@@ -6,7 +6,7 @@ const course: Course = {
 	id: 1,
 	title: 'Video Course 1. Name tag',
 	creationDate: new Date('2020/10/10'),
-	duration: {hours: 1, minutes: 28},
+	duration: 88,
 	description: 'test description'
 };
 
@@ -27,12 +27,4 @@ describe('CoursesListComponent', () => {
 		component.deleteCourse.subscribe((deletedCourse: Course) => expect(deletedCourse).toBe(course));
 		component.onCourseDelete(course);
 		});
-
-	it('should load more courses when clicked load-more button', () => {
-		const loadValue: string = 'test courses loads';
-	
-		component.loadmoreCourse.subscribe((loaded: string) => expect(loaded).toBe(loadValue));
-		component.onLoadMoreCourses(loadValue);
-	});
-
 });

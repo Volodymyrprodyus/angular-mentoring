@@ -5,7 +5,7 @@ const mockCourse: Course = {
 	id: 1,
 	title: 'Video Course 1. Name tag',
 	creationDate: new Date('2020/10/10'),
-	duration: {hours: 1, minutes: 28},
+	duration: 28,
 	description: 'test description'
 };
 

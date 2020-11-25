@@ -11,7 +11,7 @@ const mockCourses: Course[] = [
 		id: 1,
 		title: 'Video Course 1. Name tag',
 		creationDate: new Date('2020/10/10'),
-		duration: {hours: 1, minutes: 28},
+		duration: 88,
 		description: 'test description'
 	}
 ];

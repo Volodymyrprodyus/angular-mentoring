@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { ngMocks } from 'ng-mocks';
 
 import { Course } from '../../models/course.model';
+import { DurationPipe } from '../pipes/duration.pipe';
 import { CourseItemComponent } from './course-item.component';
 import { CourseItemModule } from './course-item.module';
 
@@ -11,7 +12,7 @@ const mockCourse: Course = {
 		id: 1,
 		title: 'Video Course 1. Name tag',
 		creationDate: new Date('2020/10/10'),
-		duration: {hours: 1, minutes: 28},
+		duration: 88,
 		description: 'test description'
 	};
 
@@ -21,12 +22,16 @@ const mockDate = {
 	year: mockCourse.creationDate.getFullYear().toString().substr(-2)
 };
 
+const hours = Math.floor(mockCourse.duration / 60);
+const minutes = Math.floor(mockCourse.duration % 60);
+const mockCourseDuration = (hours) ? `${hours} h ${minutes} min` : `${minutes} min`;
+
 describe('CourseItemComponent', () => {
 	let component: CourseItemComponent;
 	let fixture: ComponentFixture<CourseItemComponent>;
 
 	beforeEach(() => {
-		TestBed.configureTestingModule(ngMocks.guts(CourseItemComponent, CourseItemModule));
+		TestBed.configureTestingModule(ngMocks.guts([CourseItemComponent, DurationPipe], CourseItemModule));
 		fixture = TestBed.createComponent(CourseItemComponent);
 		component = fixture.componentInstance;
 		component.course = mockCourse;
@@ -44,10 +49,9 @@ describe('CourseItemComponent', () => {
 		const courseTimeElem = courseTime.nativeElement;
 		const courseDescriptionElem = courseDescription.nativeElement;
 
-		expect(courseTitleElem.textContent).toContain(mockCourse.title);
+		expect(courseTitleElem.textContent).toContain(mockCourse.title.toUpperCase());
 		expect(courseDateElem.textContent).toContain(`${mockDate.month}/${mockDate.day}/${mockDate.year}`);
-		expect(courseTimeElem.textContent).toContain(mockCourse.duration.hours);
-		expect(courseTimeElem.textContent).toContain(mockCourse.duration.minutes);
+		expect(courseTimeElem.textContent).toContain(mockCourseDuration);
 		expect(courseDescriptionElem.textContent).toContain(mockCourse.description);
 	});
 
