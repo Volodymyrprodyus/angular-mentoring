@@ -13,12 +13,12 @@ export class CourseCreationDirective implements OnInit {
   }
 
   renderBorderStyle(): void {
-	const currentDate = Date.now();
-	const creationDate = this.creationDate.getTime();
-	const msPerDay = 86400000;
+    const currentDate = Date.now();
+    const creationDate = this.creationDate.getTime();
+    const msPerDay = 86400000;
 
-	const isFreshCourse = creationDate < currentDate && creationDate >= (currentDate - 14 * msPerDay);
-	const isUpcommingCourse = creationDate > currentDate;
+    const isFreshCourse = creationDate < currentDate && creationDate >= (currentDate - 14 * msPerDay);
+    const isUpcommingCourse = creationDate > currentDate;
 
     if (isFreshCourse) {
       this.render.addClass(this.elem.nativeElement, 'is-fresh');

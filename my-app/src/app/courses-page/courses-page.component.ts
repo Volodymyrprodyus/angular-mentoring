@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Course } from '../models/course.model';
-import { FilterPipe } from './pipes';
+import { FilterPipe } from '../shared/pipes';
 
 @Component({
   selector: 'app-courses-page',
@@ -12,6 +12,10 @@ export class CoursesPageComponent implements OnInit {
 
   courses: Course[];
   filteredCourses: Course[];
+
+  get isCoursesAvailable() {
+    return !!!!this.filteredCourses.length;
+  }
 
   constructor(private filterPipe: FilterPipe) {}
 
@@ -38,12 +42,6 @@ export class CoursesPageComponent implements OnInit {
     ];
 
     this.filteredCourses = this.courses;
-
-    this.isCoursesAvailable();
-  }
-
-  isCoursesAvailable() {
-    return !!this.filteredCourses.length;
   }
 
   onAddNewCourse(): void {

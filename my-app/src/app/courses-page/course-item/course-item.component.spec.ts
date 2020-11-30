@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { ngMocks } from 'ng-mocks';
 
 import { Course } from '../../models/course.model';
-import { DurationPipe } from '../pipes/duration.pipe';
+import { DurationPipe } from '../../shared/pipes/duration.pipe';
 import { CourseItemComponent } from './course-item.component';
 import { CourseItemModule } from './course-item.module';
 
