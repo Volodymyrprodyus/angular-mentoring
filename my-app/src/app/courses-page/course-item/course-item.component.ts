@@ -13,12 +13,10 @@ export class CourseItemComponent {
   @Output() delete = new EventEmitter<Course>();
 
   onEdit(): void {
-    console.log('onEdit');
     this.edit.emit(this.course);
   }
 
   onDelete(): void {
-    console.log('onDelete');
     this.delete.emit(this.course);
   }
 

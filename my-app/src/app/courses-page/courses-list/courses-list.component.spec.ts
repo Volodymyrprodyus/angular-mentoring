@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ngMocks } from 'ng-mocks';
-import { Course } from '../../models/course.interface';
+import { Course } from '../../models/course.model';
 
 import { CoursesListComponent } from './courses-list.component';
 import { CoursesListModule } from './courses-list.module';
@@ -11,7 +11,7 @@ const mockCourses: Course[] = [
 		id: 1,
 		title: 'Video Course 1. Name tag',
 		creationDate: new Date('2020/10/10'),
-		duration: {hours: 1, minutes: 28},
+		duration: 88,
 		description: 'test description'
 	}
 ];
@@ -34,7 +34,6 @@ describe('CoursesListComponent', () => {
 
 	it('should edit course when clicked edit-course button', () => {
 		spyOn(component.editCourse, 'emit');
-		expect(component.editCourse).toBeNull;
 
 		component.onCourseEdit(mockCourses[0]);
 		expect(component.editCourse.emit).toHaveBeenCalledWith(mockCourses[0]);
@@ -42,7 +41,6 @@ describe('CoursesListComponent', () => {
 
 	it('should delete course when clicked delete-course button', () => {
 		spyOn(component.deleteCourse, 'emit');
-		expect(component.deleteCourse).toBeNull;
 
 		component.onCourseDelete(mockCourses[0]);
 		expect(component.deleteCourse.emit).toHaveBeenCalledWith(mockCourses[0]);

@@ -24,7 +24,7 @@ export class CoursesListComponent {
     this.editCourse.emit(course);
   }
 
-  onLoadMoreCourses(value?: any): void {
-    this.loadmoreCourse.emit(value);
+  onLoadMoreCourses(): void {
+    this.loadmoreCourse.emit();
   }
 }

@@ -13,7 +13,7 @@
         Courses
     </a>
 </app-breadcrumbs>
-<app-course-search></app-course-search>
+<app-course-search (searchPhrase)="onCourseSearch($event)"></app-course-search>
 
 <button
     class="add-button"
@@ -24,9 +24,15 @@
 </button>
 
 <app-courses-list
-    [courses]="courses"
+    [courses]="filteredCourses"
     (delete)="onDeleteCourse($event)"
     (edit)="onEditCourse($event)"
     (loadmoreCourse)="onLoadMoreCourses()"
+    *ngIf="isCoursesAvailable; else noDataMessage"
 >
 </app-courses-list>
+<ng-template #noDataMessage>
+    <div class="no-course-available">
+        <h3>No data. Feel free to add new course.</h3>
+    </div>
+</ng-template>

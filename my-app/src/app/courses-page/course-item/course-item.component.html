@@ -1,23 +1,25 @@
 <div class="item-content">
     <div class="item-section">
         <div class="item-header">
-            <div class="item-title">{{course.title}}</div>
+            <div class="item-title">{{ course.title | uppercase }}
+                <img src="assets/icons/ic_star.svg" alt="img" class="icon ic-star" *ngIf="course.topRated" />
+            </div>
             <section class="time-date-section">
                 <div class="time-section">
                     <p class="duration time"><img class="icon" src="assets/icons/ic_clock.svg" alt="img">
-                        <span>{{course.duration.hours}}h {{course.duration.minutes}}min</span>
+                        <span>{{ course.duration | duration }}</span>
                     </p>
                 </div>
                 <div class="date-section">
                     <p class="duration date"><img class="icon" src="assets/icons/ic_calendar.svg" alt="img">
-                        <span>{{course.creationDate | date: 'shortDate'}}</span>
+                        <span>{{ course.creationDate | date: 'shortDate' }}</span>
                     </p>
                 </div>
             </section>
         </div>
 
         <section class="item-descr">
-            <p class="item-description">{{course.description}}</p>
+            <p class="item-description">{{ course.description }}</p>
         </section>
     </div>
 

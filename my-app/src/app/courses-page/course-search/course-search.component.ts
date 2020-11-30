@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-course-search',
@@ -8,8 +8,10 @@ import { Component } from '@angular/core';
 export class CourseSearchComponent {
   inputValue: string;
 
+  @Output() searchPhrase = new EventEmitter<string>();
+
   onClick(): void {
-    console.log(`You try to find: ${this.inputValue}`);
+    this.searchPhrase.emit(this.inputValue);
   }
 
 }

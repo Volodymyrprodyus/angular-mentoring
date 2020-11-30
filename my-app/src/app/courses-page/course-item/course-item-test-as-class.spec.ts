@@ -1,11 +1,11 @@
-import { Course } from 'src/app/models/course.interface';
+import { Course } from 'src/app/models/course.model';
 import { CourseItemComponent } from './course-item.component';
 
 const mockCourse: Course = {
 	id: 1,
 	title: 'Video Course 1. Name tag',
 	creationDate: new Date('2020/10/10'),
-	duration: {hours: 1, minutes: 28},
+	duration: 28,
 	description: 'test description'
 };
 
@@ -25,9 +25,9 @@ describe('CourseItemComponent', () => {
   });
 
   it('should delete course-item', () => {
-	spyOn(component.delete, 'emit');
-    
-	component.onDelete();
-	expect(component.delete.emit).toHaveBeenCalledWith(mockCourse);
-      });
+    spyOn(component.delete, 'emit');
+
+    component.onDelete();
+    expect(component.delete.emit).toHaveBeenCalledWith(mockCourse);
+  });
 });

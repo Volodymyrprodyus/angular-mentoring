@@ -1,11 +1,11 @@
-import { Time } from '@angular/common';
 
 export interface ICourse {
     id: number;
     title: string;
     creationDate: Date;
-    duration: Time;
+    duration: number;
     description: string;
+    topRated?: boolean;
 }
 
 export class Course implements ICourse {
@@ -13,7 +13,8 @@ export class Course implements ICourse {
         public id: number,
         public title: string,
         public creationDate: Date,
-        public duration: Time,
-        public description: string
+        public duration: number,
+        public description: string,
+        public topRated?: boolean
     ) {}
 }

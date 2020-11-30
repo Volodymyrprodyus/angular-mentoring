@@ -36,3 +36,7 @@ app-course-item {
     color: var(--white);
     cursor: pointer;
 }
+
+.topCourse {
+    background-color: color(lasPalmasTransparent);
+}
