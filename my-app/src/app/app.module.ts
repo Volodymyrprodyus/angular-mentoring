@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterModule } from './shared/components/footer/footer.module';
 import { CoursesPageModule } from './courses-page';
+import { LoginPageModule } from './login-page';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { CoursesPageModule } from './courses-page';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    LoginPageModule,
     CoursesPageModule,
     FooterModule,
     AppRoutingModule
