@@ -31,7 +31,7 @@ export class LoginPageComponent implements OnInit {
       password: this.password.value
     }
     this.auth.login(this.UserAuthKey, userData);
-    console.log('Logged successfully!!!')
+    console.log('Logged in successfully!')
   }
 
   private buildForm(): void {

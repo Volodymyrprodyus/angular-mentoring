@@ -6,12 +6,11 @@
 }
 
 app-course-search, app-courses-list {
-  margin: 0 15%;
+    margin: 0 15%;
 }
 
-.log-buttons {
+app-log-in-button {
     display: flex;
-    align-content: center;
 }
 
 .breadcrumbs-text {

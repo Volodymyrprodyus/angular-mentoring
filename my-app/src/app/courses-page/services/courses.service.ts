@@ -42,8 +42,9 @@ export class CoursesService {
   }
 
   updateCourseItem(course: Course): void {
-    const updateIndex = this.courses.findIndex(courseItem => courseItem.id === course.id);
-    this.courses[updateIndex] = course; 
+    const updatedIndex = this.courses.findIndex(courseItem => courseItem.id === course.id);
+    console.log('updatedIndex==', updatedIndex);
+    this.courses[updatedIndex] = course;
   }
 
   removeCourseItem(course: Course): void {

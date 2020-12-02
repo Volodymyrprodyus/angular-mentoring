@@ -2,16 +2,19 @@
     <div class="item-section">
         <div class="item-header">
             <div class="item-title">{{ course.title | uppercase }}
-                <img src="assets/icons/ic_star.svg" alt="img" class="icon ic-star" *ngIf="course.topRated" />
+                <img src="assets/icons/ic_star.svg" alt="img" class="icon
+                    ic-star" *ngIf="course.topRated" />
             </div>
             <section class="time-date-section">
                 <div class="time-section">
-                    <p class="duration time"><img class="icon" src="assets/icons/ic_clock.svg" alt="img">
+                    <p class="duration time"><img class="icon"
+                            src="assets/icons/ic_clock.svg" alt="img">
                         <span>{{ course.duration | duration }}</span>
                     </p>
                 </div>
                 <div class="date-section">
-                    <p class="duration date"><img class="icon" src="assets/icons/ic_calendar.svg" alt="img">
+                    <p class="duration date"><img class="icon"
+                            src="assets/icons/ic_calendar.svg" alt="img">
                         <span>{{ course.creationDate | date: 'shortDate' }}</span>
                     </p>
                 </div>
@@ -28,7 +31,8 @@
             <img src="assets/icons/ic_edit.svg" alt="img">
             <span>Edit</span>
         </button>
-        <button class="delete-button button" (click)="onDelete()">
+        <button class="delete-button button" cdkOverlayOrigin
+            #triggerCdkOverlay="cdkOverlayOrigin" (click)="isOpen= true">
             <img src="assets/icons/ic_delete.svg" alt="img">
             <span class="del-text">Delete</span>
         </button>
@@ -37,21 +41,25 @@
 </div>
 
 <ng-template
-  #overlayDir="cdkConnectedOverlay"
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]="trigger"
-  [cdkConnectedOverlayOpen]="isOpen"
-  (detach)="onDetached()"
->
-  <section class="delete-popup">
-    <header class="popup-header">
-      <p>Delete course?</p>
-      <img src="assets/icons/ic_close.svg" alt="img" class="close-icon" (click)="onCancel()"/>
-    </header>
-    <main class="popup-text">Are you sure you want to delete {{ course.title | uppercase }}?</main>
-    <footer class="popup-buttons">
-      <button class="cancel-btn popup-btn" (click)="onCancel()">Cancel</button>
-      <button class="delete-p-btn popup-btn" (click)="onDelete()">Yes, delete</button>
-    </footer>
-  </section>
+    #overlayDir="cdkConnectedOverlay"
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="triggerCdkOverlay"
+    [cdkConnectedOverlayOpen]="isOpen"
+    (detach)="onDetached()">
+    <section class="delete-popup">
+        <header class="delete-popup-header">
+            <p>Delete this course?</p>
+            <img src="assets/icons/ic_close.svg" alt="img" class="close-icon"
+                (click)="onCancel()" />
+        </header>
+        <hr class="hr-washed">
+        <main class="popup-content">Do you really want to delete <br />{{
+            course.title | uppercase }}?</main>
+        <hr class="hr-washed">
+        <footer class="popup-buttons">
+            <button class="cancel-btn popup-btn" (click)="onCancel()">Cancel</button>
+            <button class="delete-p-btn popup-btn" (click)="onDelete()">Yes,
+                delete</button>
+        </footer>
+    </section>
 </ng-template>

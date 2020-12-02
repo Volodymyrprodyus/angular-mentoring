@@ -21,7 +21,7 @@ export class CoursesPageComponent {
   }
 
   get isCoursesAvailable() {
-    return !!!!this.filteredCourses.length;
+    return !!this.filteredCourses.length;
   }
 
   constructor(private filterPipe: FilterPipe, private coursesService: CoursesService) {}

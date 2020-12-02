@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FooterModule } from './shared/components/footer/footer.module';
 import { CoursesPageModule } from './courses-page';
 import { LoginPageModule } from './login-page';
+import { CoreModule } from './core';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { LoginPageModule } from './login-page';
     AppComponent,
   ],
   imports: [
+    CoreModule,
     BrowserModule,
     AppRoutingModule,
     LoginPageModule,

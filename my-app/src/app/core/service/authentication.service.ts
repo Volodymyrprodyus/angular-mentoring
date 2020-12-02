@@ -25,7 +25,7 @@ export class AuthenticationService {
     return this.isLoggedIn;
   }
 
-  getUserInfo(key: string = this.authKey): UserLogin {
+  getUserInfo(key: string = this.UserAuthKey): UserLogin {
     return JSON.parse(window.localStorage.getItem(key));
   }
 }

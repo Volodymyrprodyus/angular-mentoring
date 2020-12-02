@@ -68,8 +68,8 @@
 
 .time-section .duration,
 .date-section .duration {
-  display: flex;
-  align-self: center;
+    display: flex;
+    align-self: center;
 }
 
 .buttons-section {
@@ -188,3 +188,114 @@
         margin-left: 0;
     }
 }
+
+::ng-deep .cdk-overlay-connected-position-bounding-box{
+    position: absolute;
+    background-color: rgb(203, 208, 212);
+}
+
+::ng-deep .cdk-overlay-pane {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: unset !important;
+    right: unset !important;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.delete-popup {
+    height: 240px;
+    width: 400px;
+    border-radius: 5px;
+    background-color: rgb(163, 164, 165);
+    box-shadow: -10px 10px 10px 0 #333;
+}
+
+.delete-popup-header {
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: rgb(46, 49, 49);
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: 600;
+    height: 60px;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hr-washed {
+	margin: 10px 0;
+	padding: 0;
+	height: 0;
+	border: none;
+	box-shadow: 0 0 10px 1px black;
+}
+
+.popup-content {
+    line-height: 24px;
+    color: rgb(46, 49, 49);
+    font-size: 24px;
+    font-weight: bolder;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    height: 90px;
+    padding: 20px;
+}
+
+.popup-buttons {
+    padding: 0 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.popup-btn {
+    padding: 6px 12px;
+    line-height: 24px;
+    letter-spacing: -0.1px;
+    color: rgb(78, 74, 68);
+    font-size: 14px;
+    text-transform: none;
+    font-weight: 600;
+    border-radius: 3px;
+    border: none;
+}
+
+.delete-p-btn {
+    background: rgb(163, 221, 124);
+    border: 1px solid rgb(60, 61, 61);
+}
+
+.delete-p-bt:hover {
+    cursor: pointer;
+    background-color: palegoldenrod;
+}
+
+.delete-p-bt:active {
+    background-color: rgb(102, 18, 18);
+}
+
+.cancel-btn {
+    background-color: rgb(177, 198, 219);
+    border: 1px solid rgb(60, 61, 61);
+    color: rgb(78, 74, 68);
+    margin-right: 12px;
+}
+
+.cancel-btn:hover {
+    cursor: pointer;
+    background-color: seashell;
+}
+
+.cancel-btn:active {
+    background-color: mediumaquamarine;
+    color: white;
+}
+
+.close-icon {
+    cursor: pointer;
+}
+

@@ -7,6 +7,8 @@ import { Course } from '../../models';
   styleUrls: ['./course-item.component.css']
 })
 export class CourseItemComponent {
+  public isOpen = false;
+
   @Input() course: Course;
 
   @Output() edit = new EventEmitter<Course>();
@@ -20,4 +22,11 @@ export class CourseItemComponent {
     this.delete.emit(this.course);
   }
 
+  onCancel(): void {
+    this.isOpen = false;
+  }
+
+  onDetached(): void {
+    this.isOpen = false;
+  }
 }
