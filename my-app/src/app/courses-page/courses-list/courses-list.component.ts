@@ -10,18 +10,18 @@ import { Course } from '../../models';
 export class CoursesListComponent {
   @Input() courses: Course[];
 
-  @Output() editCourse = new EventEmitter<Course>();
-  @Output() deleteCourse = new EventEmitter<Course>();
+  @Output() edit = new EventEmitter<Course>();
+  @Output() delete = new EventEmitter<Course>();
   @Output() loadmoreCourse = new EventEmitter<void>();
 
   constructor() { }
 
   onCourseDelete(course: Course): void {
-    this.deleteCourse.emit(course);
+    this.delete.emit(course);
   }
 
   onCourseEdit(course: Course): void {
-    this.editCourse.emit(course);
+    this.edit.emit(course);
   }
 
   onLoadMoreCourses(): void {

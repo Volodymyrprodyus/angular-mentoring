@@ -23,3 +23,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.dialog-modal {
+    position: absolute;
+    bottom: 50% !important;
+    right: 50% !important;
+    transform: translate(50%, 50%);
+}
+
+.after-drop {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: rgb(211, 208, 208);
+}

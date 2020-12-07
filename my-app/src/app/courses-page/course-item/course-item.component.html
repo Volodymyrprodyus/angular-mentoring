@@ -43,23 +43,14 @@
 <ng-template
     #overlayDir="cdkConnectedOverlay"
     cdkConnectedOverlay
+    cdkConnectedOverlayBackdropClass="after-drop"
+    cdkConnectedOverlayPanelClass="dialog-modal"
     [cdkConnectedOverlayOrigin]="triggerCdkOverlay"
     [cdkConnectedOverlayOpen]="isOpen"
-    (detach)="onDetached()">
-    <section class="delete-popup">
-        <header class="delete-popup-header">
-            <p>Delete this course?</p>
-            <img src="assets/icons/ic_close.svg" alt="img" class="close-icon"
-                (click)="onCancel()" />
-        </header>
-        <hr class="hr-washed">
-        <main class="popup-content">Do you really want to delete <br />{{
-            course.title | uppercase }}?</main>
-        <hr class="hr-washed">
-        <footer class="popup-buttons">
-            <button class="cancel-btn popup-btn" (click)="onCancel()">Cancel</button>
-            <button class="delete-p-btn popup-btn" (click)="onDelete()">Yes,
-                delete</button>
-        </footer>
-    </section>
+    (backdropClick)="onCancel()">
+    <app-course-delete-dialog
+        [course]="course"
+        (cancel)="onCancel()"
+        (delete)="onDelete()">
+    </app-course-delete-dialog>
 </ng-template>
