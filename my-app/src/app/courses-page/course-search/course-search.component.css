@@ -1,7 +1,7 @@
 :host {
-    margin: 20px auto 0 15%;
-    display: flex;
-  }
+  margin: 20px auto 0 15%;
+  display: flex;
+}
 
 .course-search {
   border-radius: 3px;
@@ -12,7 +12,6 @@
   margin-right: 12px;
   padding: 9px 12px 9px 40px;
 }
-
 
 .search-button {
   line-height: 30px;
@@ -29,7 +28,7 @@
 }
 
 .course-search:placeholder-shown {
-  background-image: url('src/assets/icons/magnifying_glass.svg');
+  background-image: url("src/assets/icons/magnifying_glass.svg");
   background-repeat: no-repeat;
   background-position: 15px;
   transition: background-image 0.2s ease-in-out;
@@ -37,18 +36,16 @@
 }
 
 .course-search::placeholder {
-  color: rgba(0,0,0,0.3);
+  color: rgba(0, 0, 0, 0.3);
   font-size: 1.2em;
   font-style: italic;
 }
 
-
-
 .search-button:hover {
-    cursor: pointer;
-    background-color: var(--deepGreen);
+  cursor: pointer;
+  background-color: var(--deepGreen);
 }
 
 .search-button:active {
-    background-color: var(--deepGreen);
+  background-color: var(--deepGreen);
 }
