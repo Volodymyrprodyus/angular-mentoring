@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../core/service/authentication.service';
+import { GlobalConstants } from '../shared/constans/global-constants';
 
 @Component({
   selector: 'app-login-page',
@@ -9,7 +10,7 @@ import { AuthenticationService } from '../core/service/authentication.service';
 })
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
-  UserAuthKey: string = 'User_authKey';
+  userAuthKey = GlobalConstants.userAuthKey;
 
   get email(): AbstractControl {
     return this.loginForm.get('email');
@@ -30,7 +31,7 @@ export class LoginPageComponent implements OnInit {
       email: this.email.value,
       password: this.password.value
     }
-    this.auth.login(this.UserAuthKey, userData);
+    this.auth.login(this.userAuthKey, userData);
     console.log('Logged in successfully!')
   }
 

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { UserLogin } from '../../models/user-login.model';
+import{ GlobalConstants } from '../../shared/constans/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   private isLoggedIn: boolean = false; 
-  private UserAuthKey: string = 'User_authKey';
+  userAuthKey = GlobalConstants.userAuthKey;
 
   constructor() {}
 
@@ -16,7 +17,7 @@ export class AuthenticationService {
     this.isLoggedIn = true;
   }
 
-  logout(key: string = this.UserAuthKey): void {
+  logout(key: string = this.userAuthKey): void {
     window.localStorage.removeItem(key);
     this.isLoggedIn = false;
   }
@@ -25,7 +26,7 @@ export class AuthenticationService {
     return this.isLoggedIn;
   }
 
-  getUserInfo(key: string = this.UserAuthKey): UserLogin {
+  getUserInfo(key: string = this.userAuthKey): UserLogin {
     return JSON.parse(window.localStorage.getItem(key));
   }
 }
