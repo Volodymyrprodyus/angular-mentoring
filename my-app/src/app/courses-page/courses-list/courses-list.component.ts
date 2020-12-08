@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../../models';
 
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
-  styleUrls: ['./courses-list.component.css']
+  styleUrls: ['./courses-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CoursesListComponent {

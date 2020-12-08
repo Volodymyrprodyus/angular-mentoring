@@ -9,7 +9,7 @@ import { CourseDeleteDialogComponent } from '../course-delete-dialog';
 @NgModule({
   imports: [CommonModule, FormsModule, OverlayModule],
   declarations: [CourseItemComponent, DurationPipe, CourseDeleteDialogComponent],
-  exports: [CourseItemComponent, CourseDeleteDialogComponent],
+  exports: [CourseItemComponent, CourseDeleteDialogComponent, DurationPipe],
 })
 
 export class CourseItemModule {}

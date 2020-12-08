@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Course } from '../../models/course.model';
 
+import { v4 as uuidv4 } from 'uuid';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,8 +35,15 @@ export class CoursesService {
     return this.courses;
   }
 
-  createCourseItem(course: Course): void {
-    this.courses.push(course);
+  createCourseItem(course: Partial<Course>): Course[] {
+    const createdCourse = {
+      id: uuidv4(),
+      title: course.title || null,
+      creationDate: course.creationDate || null,
+      duration: course.duration || null,
+      description: course.description || null
+    }
+    return [...this.courses, createdCourse];
   }
 
   getCourseById(id: number): Course {

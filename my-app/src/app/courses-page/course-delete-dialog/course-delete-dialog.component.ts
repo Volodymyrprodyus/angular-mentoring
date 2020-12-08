@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../../models';
 
 @Component({
   selector: 'app-course-delete-dialog',
   templateUrl: './course-delete-dialog.component.html',
-  styleUrls: ['./course-delete-dialog.component.scss']
+  styleUrls: ['./course-delete-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseDeleteDialogComponent {
   @Input() course: Course;
