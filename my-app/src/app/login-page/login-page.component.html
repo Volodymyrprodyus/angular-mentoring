@@ -1,0 +1,27 @@
+<app-header>
+    <app-fake-logo></app-fake-logo>
+</app-header>
+<section class="login-section">
+    <div class="login-section-header">
+        Login
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-field">
+            <label for="email" class="form-field-lable">Email: <span
+                    class="required-message"> required!!! </span></label>
+            <input type="text" id="email" formControlName="email"
+                class="form-field-input" placeholder="Enter your e-mail" />
+        </div>
+        <div class="form-field">
+            <label for="password" class="form-field-lable">Password: <span
+                    class="required-message"> required!!! </span></label>
+            <input type="text" id="password" formControlName="password"
+                class="form-field-input" placeholder="Enter your password" />
+        </div>
+        <div class="form-buttons">
+            <a class="forgot-password">Forgot your password?</a>
+            <button type="submit" [disabled]="!loginForm.valid"
+                class="submit-button">Login</button>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,18 @@
+<app-header>
+    <app-fake-logo></app-fake-logo>
+    <div>
+        <app-log-in-button></app-log-in-button>
+    </div>
+</app-header>
+<app-breadcrumbs>
+    <a class="breadcrumbs-text">
+        Courses /
+        <b>New Course</b>
+    </a>
+</app-breadcrumbs>
+<div class="add-course-form">
+    <app-add-course-form
+        (newCourse)="onCreateNewCourse($event)"
+        (cancel)="onCancel()"
+    ></app-add-course-form>
+</div>

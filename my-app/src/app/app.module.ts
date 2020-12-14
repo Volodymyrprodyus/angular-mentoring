@@ -5,18 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterModule } from './shared/components/footer/footer.module';
 import { CoursesPageModule } from './courses-page';
+import { LoginPageModule } from './login-page';
+import { CoreModule } from './core';
+import { AddCoursePageModule } from './add-course-page';
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
   ],
   imports: [
+    CoreModule,
     BrowserModule,
     AppRoutingModule,
+    LoginPageModule,
     CoursesPageModule,
     FooterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AddCoursePageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,0 @@
-export { LogOutButtonModule } from './log-out-button.module';

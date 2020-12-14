@@ -1,0 +1,100 @@
+:host {
+  background-color: rgb(100, 100, 100);
+  display: block;
+  min-height: calc(100vh - 55px);
+  padding-bottom: 30px;
+}
+
+.login-section {
+  border-radius: 5px;
+  background: rgb(211, 211, 211);
+  box-shadow: -10px 10px 10px 0 #333;
+  height: 310px;
+  width: 370px;
+  padding: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-section-header {
+  color: darkcyan;
+  font-size: 24px;
+  text-transform: none;
+  text-align: left;
+  font-weight: 600;
+  height: 31px;
+  width: 58px;
+  margin-bottom: 24px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-lable {
+  line-height: 24px;
+  letter-spacing: 0;
+  color: gray;
+  font-size: 14px;
+  text-transform: none;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-field-input {
+  border-radius: 3px;
+  border: 1px solid lightblue;
+  background: white;
+  box-sizing: border-box;
+  height: 36px;
+  margin-bottom: 12px;
+  padding: 9px 12px;
+}
+
+.required-message {
+  line-height: 24px;
+  letter-spacing: 0;
+  color: rgb(248, 89, 97);
+  font-size: 12px;
+  text-transform: none;
+  text-align: left;
+  font-weight: normal;
+}
+
+.form-buttons {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-password {
+  line-height: 24px;
+  letter-spacing: 0;
+  color: rgb(80, 78, 75);
+  font-size: 14px;
+  text-transform: none;
+  text-align: left;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.submit-button {
+  padding: 6px 23px;
+  line-height: 24px;
+  letter-spacing: -0.1px;
+  background: rgb(140, 236, 76);
+  color: white;
+  font-size: 14px;
+  text-transform: none;
+  font-weight: 600;
+  border-radius: 3px;
+  border: none;
+}

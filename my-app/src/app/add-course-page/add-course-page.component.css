@@ -1,0 +1,28 @@
+:host {
+  background-color: rgb(100, 100, 100);
+  display: block;
+  min-height: calc(100vh - 55px);
+  padding-bottom: 30px;
+}
+
+.add-course-form {
+  margin-top: 50px;
+}
+
+app-log-in-button {
+  display: flex;
+}
+
+.breadcrumbs-text {
+  color: var(--darkNight);
+  font-size: 14px;
+  font-family: var(--my-font-family);
+  text-transform: none;
+  text-align: left;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.breadcrumbs-text b {
+  font-weight: 600;
+}

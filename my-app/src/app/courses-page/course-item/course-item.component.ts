@@ -1,12 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../../models';
 
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.css']
+  styleUrls: ['./course-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent {
+  public isOpen = false;
+
   @Input() course: Course;
 
   @Output() edit = new EventEmitter<Course>();
@@ -20,4 +23,7 @@ export class CourseItemComponent {
     this.delete.emit(this.course);
   }
 
+  onCancel(): void {
+    this.isOpen = false;
+  }
 }

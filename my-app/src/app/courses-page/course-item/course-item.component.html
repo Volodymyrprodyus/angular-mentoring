@@ -2,16 +2,19 @@
     <div class="item-section">
         <div class="item-header">
             <div class="item-title">{{ course.title | uppercase }}
-                <img src="assets/icons/ic_star.svg" alt="img" class="icon ic-star" *ngIf="course.topRated" />
+                <img src="assets/icons/ic_star.svg" alt="img" class="icon
+                    ic-star" *ngIf="course.topRated" />
             </div>
             <section class="time-date-section">
                 <div class="time-section">
-                    <p class="duration time"><img class="icon" src="assets/icons/ic_clock.svg" alt="img">
+                    <p class="duration time"><img class="icon"
+                            src="assets/icons/ic_clock.svg" alt="img">
                         <span>{{ course.duration | duration }}</span>
                     </p>
                 </div>
                 <div class="date-section">
-                    <p class="duration date"><img class="icon" src="assets/icons/ic_calendar.svg" alt="img">
+                    <p class="duration date"><img class="icon"
+                            src="assets/icons/ic_calendar.svg" alt="img">
                         <span>{{ course.creationDate | date: 'shortDate' }}</span>
                     </p>
                 </div>
@@ -28,10 +31,26 @@
             <img src="assets/icons/ic_edit.svg" alt="img">
             <span>Edit</span>
         </button>
-        <button class="delete-button button" (click)="onDelete()">
+        <button class="delete-button button" cdkOverlayOrigin
+            #triggerCdkOverlay="cdkOverlayOrigin" (click)="isOpen= true">
             <img src="assets/icons/ic_delete.svg" alt="img">
             <span class="del-text">Delete</span>
         </button>
     </div>
 
 </div>
+
+<ng-template
+    #overlayDir="cdkConnectedOverlay"
+    cdkConnectedOverlay
+    cdkConnectedOverlayBackdropClass="after-drop"
+    cdkConnectedOverlayPanelClass="dialog-modal"
+    [cdkConnectedOverlayOrigin]="triggerCdkOverlay"
+    [cdkConnectedOverlayOpen]="isOpen"
+    (backdropClick)="onCancel()">
+    <app-course-delete-dialog
+        [course]="course"
+        (cancel)="onCancel()"
+        (delete)="onDelete()">
+    </app-course-delete-dialog>
+</ng-template>

@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-course-search',
   templateUrl: './course-search.component.html',
-  styleUrls: ['./course-search.component.css']
+  styleUrls: ['./course-search.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseSearchComponent {
   inputValue: string;
