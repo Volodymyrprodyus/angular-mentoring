@@ -1,4 +1,4 @@
-<header class="new-course-header">New course</header>
+<header class="new-course-header">{{ coursePageTitle }}</header>
 <form class="new-course-form">
     <div class="form-field">
         <label
@@ -49,7 +49,7 @@
             Cancel
         </button>
         <button
-            type="submit"
+            type="button"
             class="submit-button add-course-btn"
             (click)="onSave()"
         >

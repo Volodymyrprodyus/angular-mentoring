@@ -1,0 +1,12 @@
+:host {
+  background-color: #f5f5f5;
+  display: block;
+  min-height: calc(100vh - 55px);
+  padding-bottom: 30px;
+  background: no-repeat center/80% url('../../assets/images/page_not_found.png');
+}
+
+.not-found-header {
+  padding-top: 100px;
+  text-align: center;
+}

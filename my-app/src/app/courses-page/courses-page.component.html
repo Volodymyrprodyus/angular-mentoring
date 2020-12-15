@@ -6,7 +6,6 @@
 </app-header>
 <app-breadcrumbs>
     <a
-        routerLink="/"
         class="breadcrumbs-text"
     >
         Courses
@@ -16,7 +15,7 @@
 
 <button
     class="add-button"
-    (click)="onAddNewCourse()"
+    routerLink="./addNew"
 >
     <div class="add-button-icon">+</div>
     Add course
@@ -25,7 +24,6 @@
 <app-courses-list
     [courses]="filteredCourses"
     (delete)="onDeleteCourse($event)"
-    (edit)="onEditCourse($event)"
     (loadmoreCourse)="onLoadMoreCourses()"
     *ngIf="isCoursesAvailable; else noDataMessage"
 >

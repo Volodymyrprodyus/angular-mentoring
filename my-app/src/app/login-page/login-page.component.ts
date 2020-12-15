@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../core/service/authentication.service';
 import { GlobalConstants } from '../shared/constans/global-constants';
 
@@ -20,7 +21,7 @@ export class LoginPageComponent implements OnInit {
     return this.loginForm.get('password');
   }
   
-  constructor(private fb: FormBuilder, private auth: AuthenticationService) {}
+  constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -31,14 +32,14 @@ export class LoginPageComponent implements OnInit {
       email: this.email.value,
       password: this.password.value
     }
-    this.auth.login(this.userAuthKey, userData);
-    console.log('Logged in successfully!')
+    this.auth.login(userData);
+    this.router.navigate(['courses']);
   }
 
   private buildForm(): void {
     this.loginForm = this.fb.group({
       email: ['', {validators: [Validators.required, Validators.email], updateOn: 'blur'}],
-      password: ['', {validators: [Validators.required], updateOn: 'blur'}],
+      password: ['', {validators: [Validators.required]}],
     });
   }
 }

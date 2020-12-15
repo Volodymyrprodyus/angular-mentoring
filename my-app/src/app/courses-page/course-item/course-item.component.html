@@ -27,7 +27,7 @@
     </div>
 
     <div class="buttons-section">
-        <button class="edit-button button" (click)="onEdit()">
+        <button class="edit-button button" [routerLink]="['/courses', course.id]">
             <img src="assets/icons/ic_edit.svg" alt="img">
             <span>Edit</span>
         </button>

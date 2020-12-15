@@ -7,26 +7,21 @@ import{ GlobalConstants } from '../../shared/constans/global-constants';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private isLoggedIn: boolean = false; 
-  userAuthKey = GlobalConstants.userAuthKey;
+  private userAuthKey = GlobalConstants.userAuthKey;
 
-  constructor() {}
-
-  login(key: string, value: UserLogin): void {
-    window.localStorage.setItem(key, JSON.stringify(value));
-    this.isLoggedIn = true;
+  login(value: UserLogin): void {
+    window.localStorage.setItem(this.userAuthKey, JSON.stringify(value));
   }
 
-  logout(key: string = this.userAuthKey): void {
-    window.localStorage.removeItem(key);
-    this.isLoggedIn = false;
+  logout(): void {
+    window.localStorage.removeItem(this.userAuthKey);
   }
 
   isAuthenticated(): boolean {
-    return this.isLoggedIn;
+    return this.getUserInfo() !== null;
   }
 
-  getUserInfo(key: string = this.userAuthKey): UserLogin {
-    return JSON.parse(window.localStorage.getItem(key));
+  getUserInfo(): UserLogin {
+    return JSON.parse(window.localStorage.getItem(this.userAuthKey));
   }
 }

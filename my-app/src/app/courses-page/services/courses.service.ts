@@ -36,13 +36,7 @@ export class CoursesService {
   }
 
   createCourseItem(course: Partial<Course>): Course[] {
-    const createdCourse = {
-      id: uuidv4(),
-      title: course.title || null,
-      creationDate: course.creationDate || null,
-      duration: course.duration || null,
-      description: course.description || null
-    }
+    const createdCourse = this.changeCourse(course)
     return [...this.courses, createdCourse];
   }
 
@@ -50,11 +44,22 @@ export class CoursesService {
     return this.courses.find(courseItem => courseItem.id === id);
   }
 
-  updateCourseItem(course: Course): Course[] {
-    return [...this.courses, course];
+  updateCourseItem(course: Partial<Course>): void {
+    const updatedCourseId = this.changeCourse(course).id;
+    this.courses = this.courses.map(course => course.id === updatedCourseId ? this.changeCourse(course) : course);
   }
 
   removeCourseItem(course: Course): void {
     this.courses = this.courses.filter(courseItem => courseItem !== course);
+  }
+
+  private changeCourse(course : Partial<Course>): Course {
+    return {
+      id: course.id,
+      title: course.title || null,
+      creationDate: new Date(course.creationDate) || null,
+      duration: course.duration || null,
+      description: course.description || null
+    }
   }
 }

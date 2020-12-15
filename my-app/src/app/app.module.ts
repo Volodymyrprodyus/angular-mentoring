@@ -8,6 +8,7 @@ import { CoursesPageModule } from './courses-page';
 import { LoginPageModule } from './login-page';
 import { CoreModule } from './core';
 import { AddCoursePageModule } from './add-course-page';
+import { NotFoundPageModule } from './no-found-page';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AddCoursePageModule } from './add-course-page';
     CoursesPageModule,
     FooterModule,
     AppRoutingModule,
-    AddCoursePageModule
+    AddCoursePageModule,
+    NotFoundPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

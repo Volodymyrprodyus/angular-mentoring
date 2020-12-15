@@ -26,16 +26,8 @@ export class CoursesPageComponent {
 
   constructor(private filterPipe: FilterPipe, private coursesService: CoursesService) {}
 
-  onAddNewCourse(): void {
-    console.log('Add new course!');
-  }
-
   onDeleteCourse(course: Course): void {
     this.coursesService.removeCourseItem(course);
-  }
-
-  onEditCourse(course: Course): void {
-    console.log(`Edit course ${course.title} with id ${course.id}`);
   }
 
   onLoadMoreCourses(): void {
