@@ -12,4 +12,8 @@ export class CourseDeleteDialogComponent {
   
   @Output() cancel = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
+
+  public onCourseDelete() {
+    this.cancel.emit();
+  }
 }

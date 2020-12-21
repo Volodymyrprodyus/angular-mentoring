@@ -17,7 +17,7 @@ export class AuthenticationService {
     window.localStorage.removeItem(this.userAuthKey);
   }
 
-  isAuthenticated(): boolean {
+  isUserAuthenticated(): boolean {
     return this.getUserInfo() !== null;
   }
 

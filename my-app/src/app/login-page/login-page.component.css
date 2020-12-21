@@ -90,7 +90,7 @@
   padding: 6px 23px;
   line-height: 24px;
   letter-spacing: -0.1px;
-  background: rgb(140, 236, 76);
+  background: var(--lightGreen);
   color: white;
   font-size: 14px;
   text-transform: none;

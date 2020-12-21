@@ -18,12 +18,12 @@ const appRoutes: Routes = [
       { path: 'addNew', component: AddCoursePageComponent },
     ],
   },
-  { path: 'login', component: LoginPageComponent },
   {
     path: '',
     redirectTo: '/courses',
     pathMatch: 'full',
   },
+  { path: 'login', component: LoginPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
 
