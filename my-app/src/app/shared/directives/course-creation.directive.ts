@@ -4,7 +4,7 @@ import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
   selector: '[appCourseCreation]'
 })
 export class CourseCreationDirective implements OnInit {
-  @Input('appCourseCreation') creationDate: Date;
+  @Input('appCourseCreation') date: string;
   
   constructor(private elem: ElementRef, private render: Renderer2) {}
 
@@ -14,7 +14,7 @@ export class CourseCreationDirective implements OnInit {
 
   renderBorderStyle(): void {
     const currentDate = Date.now();
-    const creationDate = this.creationDate.getTime();
+    const creationDate = new Date(this.date).getTime();
     const msPerDay = 86400000;
 
     const isFreshCourse = creationDate < currentDate && creationDate >= (currentDate - 14 * msPerDay);

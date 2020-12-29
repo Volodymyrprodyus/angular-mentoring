@@ -22,10 +22,10 @@
 </button>
 
 <app-courses-list
-    [courses]="filteredCourses"
+    [courses]="courses"
     (delete)="onDeleteCourse($event)"
     (loadmoreCourse)="onLoadMoreCourses()"
-    *ngIf="isCoursesAvailable; else noDataMessage"
+    *ngIf="courses$ | async; let courses; else noDataMessage"
 >
 </app-courses-list>
 <ng-template #noDataMessage>

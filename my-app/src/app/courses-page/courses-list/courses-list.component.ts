@@ -16,6 +16,10 @@ export class CoursesListComponent {
 
   constructor() { }
 
+  trackByFunc(index: number, course: Course) {
+    return course.id;
+  }
+
   onCourseDelete(course: Course): void {
     this.delete.emit(course);
   }

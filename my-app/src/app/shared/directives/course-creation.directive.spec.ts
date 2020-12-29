@@ -6,36 +6,36 @@ import { CourseCreationDirective } from './course-creation.directive';
 
 @Component({
   template: `
-    <div [appCourseCreation]="mockCourses[0].creationDate">Upcomming course - blue border</div>
-    <div [appCourseCreation]="mockCourses[1].creationDate">Fresh course - green border</div>
-    <div [appCourseCreation]="mockCourses[2].creationDate">Other course - no Border</div>
+    <div [appCourseCreation]="mockCourses[0].date">Upcomming course - blue border</div>
+    <div [appCourseCreation]="mockCourses[1].date">Fresh course - green border</div>
+    <div [appCourseCreation]="mockCourses[2].date">Other course - no Border</div>
   `
 })
 class TestComponent {
   mockCourses: Course[] = [
     {
       id: 1,
-      title: 'Video Course 1. Name tag',
-      creationDate: new Date('2020/12/22'),
-      duration: 150,
+      name: 'Video Course 1. Name tag',
+      date: '2020-12-22T12:05:41+00:00',
+      length: 150,
       description: 'test description',
-      topRated: true
+      isTopRated: true
     },
     {
       id: 2,
-      title: 'Video Course 2. Name tag',
-      creationDate: new Date('2020/11/24'),
-      duration: 320,
+      name: 'Video Course 2. Name tag',
+      date: '2020-11-24T12:05:41+00:00',
+      length: 320,
       description: 'test description',
-      topRated: false
+      isTopRated: false
     },
     {
       id: 3,
-      title: 'Video Course 3. Name tag',
-      creationDate: new Date('2020/05/20'),
-      duration: 0,
+      name: 'Video Course 3. Name tag',
+      date: '2020-05-20T12:05:41+00:00',
+      length: 0,
       description: 'test description',
-      topRated: false
+      isTopRated: false
     }
   ];
 }

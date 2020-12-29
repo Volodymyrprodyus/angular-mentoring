@@ -9,6 +9,7 @@ import { LoginPageModule } from './login-page';
 import { CoreModule } from './core';
 import { AddCoursePageModule } from './add-course-page';
 import { NotFoundPageModule } from './no-found-page';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { NotFoundPageModule } from './no-found-page';
     AppRoutingModule,
     AddCoursePageModule,
     NotFoundPageModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
