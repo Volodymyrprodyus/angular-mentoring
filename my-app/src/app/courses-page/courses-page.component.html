@@ -1,7 +1,7 @@
 <app-header>
     <app-fake-logo></app-fake-logo>
     <div>
-        <app-log-in-button></app-log-in-button>
+        <app-log-in-button [userData]="userData$ | async"></app-log-in-button>
     </div>
 </app-header>
 <app-breadcrumbs>

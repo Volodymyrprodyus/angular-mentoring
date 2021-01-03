@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { UserInfo } from 'src/app/models/user-info.model';
-import { HttpService } from '.';
+import { HttpService } from './http.service';
 
 import { UserLogin } from '../../models/user-login.model';
 import{ GlobalConstants } from '../../shared/constans/global-constants';
@@ -15,22 +15,38 @@ export class AuthenticationService {
 
   constructor(private httpService: HttpService) {}
 
-  login(value: UserLogin): Observable<UserInfo> {
+  public login(value: UserLogin): Observable<UserInfo> {
     return this.httpService.getAuthToken(value).pipe(
       switchMap((token) => this.httpService.getUserInfo(token)),
-      tap((value)=> window.localStorage.setItem(this.userAuthKey, JSON.stringify(value)))
+      tap((value)=> {
+        return window.localStorage.setItem(this.userAuthKey, JSON.stringify(value))
+      })
     );
   }
 
-  logout(): void {
+  public logout(): void {
     window.localStorage.removeItem(this.userAuthKey);
   }
 
-  isUserAuthenticated(): boolean {
+  public isUserAuthenticated(): boolean {
     return this.getUserInfo() !== null;
   }
 
-  getUserInfo(): UserInfo {
+  public getUserInfo(): UserInfo {
     return JSON.parse(window.localStorage.getItem(this.userAuthKey));
+  }
+
+  public getUserData(): Observable<UserInfo> {
+    return new Observable((obs) => {
+      obs.next(this.getUserInfo());
+      obs.complete();
+    });
+  }
+
+  public isAuthenticated(): Observable<boolean> {
+    return new Observable((obs) => {
+      obs.next(this.isUserAuthenticated());
+      obs.complete();
+    });
   }
 }

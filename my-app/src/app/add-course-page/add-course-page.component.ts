@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CoursesService } from '../courses-page';
-import { Course } from '../models';
+import { AuthenticationService } from '../core/service/authentication.service';
+import { CoursesService } from '../courses-page/services';
+import { Course, UserInfo } from '../models';
 
 @Component({
   selector: 'app-add-course-page',
@@ -12,10 +13,12 @@ import { Course } from '../models';
 })
 export class AddCoursePageComponent implements OnInit, OnDestroy {
   public course$: Observable<Course>;
+  public userData$: Observable<UserInfo>;
   public courseId: string;
   private unsubscribe: Subject<void> = new Subject();
 
   constructor(private coursesService: CoursesService,
+    private authService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute) {}
 
@@ -26,6 +29,8 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
     if (this.courseId !== 'addNew') {
       this.course$ = this.coursesService.getCourseById(courseIdToNumber);
     }
+
+    this.userData$ = this.authService.getUserData();
   }
 
   onCreateNewCourse(course: Partial<Course>): void {

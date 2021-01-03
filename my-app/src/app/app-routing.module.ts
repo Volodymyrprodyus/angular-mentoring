@@ -10,18 +10,14 @@ import { NotFoundPageComponent } from './no-found-page';
 
 const appRoutes: Routes = [
   {
-    path: 'courses',
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: CoursesPageComponent },
-      { path: ':id', component: AddCoursePageComponent },
-      { path: 'addNew', component: AddCoursePageComponent },
-    ],
-  },
-  {
     path: '',
     redirectTo: '/courses',
     pathMatch: 'full',
+  },
+  {
+    path: 'courses',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./courses-page').then(m => m.CoursesPageModule),
   },
   { path: 'login', component: LoginPageComponent },
   { path: '**', component: NotFoundPageComponent },

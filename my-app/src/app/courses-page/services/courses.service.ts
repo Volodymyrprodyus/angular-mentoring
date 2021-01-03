@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Course } from '../../models/course.model';
 
 import { v4 as uuidv4 } from 'uuid';
-import { HttpService } from 'src/app/core/service';
+import { HttpService } from '../../core/service/http.service';
 
 @Injectable({
   providedIn: 'root'

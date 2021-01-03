@@ -11,11 +11,14 @@ import { AddCoursePageModule } from './add-course-page';
 import { NotFoundPageModule } from './no-found-page';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { LoadingBlockComponent } from './shared/components/loading-block/loading-block.component';
+import { LoaderInterceptor } from './core/interceptors/loading.interceptor';
 
 
 @NgModule({
   declarations: [	
     AppComponent,
+    LoadingBlockComponent,
   ],
   imports: [
     CoreModule,
@@ -30,6 +33,11 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
     HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+      },
     {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

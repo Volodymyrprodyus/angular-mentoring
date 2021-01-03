@@ -1,7 +1,9 @@
-import { OnDestroy } from '@angular/core';
+import { ElementRef, OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AuthenticationService } from '../core/service/authentication.service';
+import { UserInfo } from '../models';
 
 import { Course } from '../models/course.model';
 import { CoursesService } from './services';
@@ -15,12 +17,16 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   public foundCourses: Course[];
   public searchPhrase: string;
   public courses$: Observable<Course[]>;
+  public userData$: Observable<UserInfo>;
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private coursesService: CoursesService) {}
+  constructor(private coursesService: CoursesService, private authService: AuthenticationService) {}
+
 
   ngOnInit(): void {
     this.courses$ = this.coursesService.getCoursesList();
+
+    this.userData$ = this.authService.getUserData();
   }
 
   onDeleteCourse(course: Course): void {
