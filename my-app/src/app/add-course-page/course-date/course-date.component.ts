@@ -7,12 +7,19 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseDateComponent {
-  @Input() courseDate: Date;
+  public date: string;
 
-  @Output() courseDateChange = new EventEmitter<Date>();
+  @Input()
+  get courseDate(): string { return this.date; }
+  set courseDate(date: string) {
+    if (date) {
+      this.date = date.substring(0, 10);
+    }
+  }
 
-  onDateChange(model: Date): void {
-    this.courseDate = model;
+  @Output() courseDateChange = new EventEmitter<string>();
+
+  onDateChange(model: string): void {
     this.courseDateChange.emit(model);
   }
 }

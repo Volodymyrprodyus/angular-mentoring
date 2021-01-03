@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
+import { UserInfo } from 'src/app/models/user-info.model';
+import { HttpService } from '.';
 
 import { UserLogin } from '../../models/user-login.model';
 import{ GlobalConstants } from '../../shared/constans/global-constants';
@@ -9,8 +13,13 @@ import{ GlobalConstants } from '../../shared/constans/global-constants';
 export class AuthenticationService {
   private userAuthKey = GlobalConstants.userAuthKey;
 
-  login(value: UserLogin): void {
-    window.localStorage.setItem(this.userAuthKey, JSON.stringify(value));
+  constructor(private httpService: HttpService) {}
+
+  login(value: UserLogin): Observable<UserInfo> {
+    return this.httpService.getAuthToken(value).pipe(
+      switchMap((token) => this.httpService.getUserInfo(token)),
+      tap((value)=> window.localStorage.setItem(this.userAuthKey, JSON.stringify(value)))
+    );
   }
 
   logout(): void {
@@ -21,7 +30,7 @@ export class AuthenticationService {
     return this.getUserInfo() !== null;
   }
 
-  getUserInfo(): UserLogin {
+  getUserInfo(): UserInfo {
     return JSON.parse(window.localStorage.getItem(this.userAuthKey));
   }
 }

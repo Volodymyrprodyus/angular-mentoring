@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterContentChecked, ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from 'src/app/models';
 
 
@@ -9,7 +9,7 @@ import { Course } from 'src/app/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class AddCourseFormComponent implements OnInit {
+export class AddCourseFormComponent implements AfterContentChecked {
   @Input() course: Course;
 
   @Output() newCourse = new EventEmitter<Partial<Course>>();
@@ -18,7 +18,7 @@ export class AddCourseFormComponent implements OnInit {
   public value: Partial<Course> = {};
   public coursePageTitle: string = "Add New course";
 
-  ngOnInit(): void {
+  ngAfterContentChecked(): void {
     if (this.course) {
       this.value = this.course;
       this.coursePageTitle = "Edit course";

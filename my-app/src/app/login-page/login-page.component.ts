@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { AuthenticationService } from '../core/service/authentication.service';
 import { GlobalConstants } from '../shared/constans/global-constants';
 
@@ -9,12 +11,12 @@ import { GlobalConstants } from '../shared/constans/global-constants';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
-  loginForm: FormGroup;
-  userAuthKey = GlobalConstants.userAuthKey;
+export class LoginPageComponent implements OnInit, OnDestroy {
+  public loginForm: FormGroup;
+  private unsubscribe: Subject<void> = new Subject();
 
-  get email(): AbstractControl {
-    return this.loginForm.get('email');
+  get login(): AbstractControl {
+    return this.loginForm.get('login');
   }
 
   get password(): AbstractControl {
@@ -29,17 +31,26 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     const userData = {
-      email: this.email.value,
+      login: this.login.value,
       password: this.password.value
     }
-    this.auth.login(userData);
-    this.router.navigate(['courses']);
+    this.auth.login(userData).pipe(
+      takeUntil(this.unsubscribe)
+    ).subscribe(
+      () => this.router.navigate(['courses']),
+      (err) => console.error('err: ', err),
+    )
   }
 
   private buildForm(): void {
     this.loginForm = this.fb.group({
-      email: ['', {validators: [Validators.required, Validators.email], updateOn: 'blur'}],
+      login: ['', {validators: [Validators.required], updateOn: 'blur'}],
       password: ['', {validators: [Validators.required]}],
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

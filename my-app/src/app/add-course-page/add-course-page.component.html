@@ -7,12 +7,12 @@
 <app-breadcrumbs>
     <a class="breadcrumbs-text">
         <span routerLink="/courses">Courses / </span>
-        <b>New Course</b>
+        <b>{{(course$ | async)?.name || "New Course"}}</b>
     </a>
 </app-breadcrumbs>
 <div class="add-course-form">
     <app-add-course-form
-        [course]="course"
+        [course]="course$ | async"
         (newCourse)="onCreateNewCourse($event)"
         (cancel)="onCancel()"
     ></app-add-course-form>
