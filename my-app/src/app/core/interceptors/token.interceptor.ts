@@ -11,17 +11,26 @@ import { AuthenticationService } from '../service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthenticationService) {}
 
-  constructor(public auth: AuthenticationService) {}
+  public intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const excludedUrls: string[] = [
+      'http://localhost:3004/auth/login',
+      'http://localhost:3004/auth/userinfo',
+    ];
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (excludedUrls.some((url: string) => request.url.includes(url))) {
+      return next.handle(request);
+    }
 
-    request = request.clone({
+    const newRequest: HttpRequest<any> = request.clone({
       setHeaders: {
-        Authorization: `${this.auth.getUserInfo().fakeToken}`
-      }
+        'Authorization': `${this.authService.getUserInfo().fakeToken}`,
+      },
     });
-
-    return next.handle(request);
+    return next.handle(newRequest);
   }
 }

@@ -38,7 +38,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe)
     ).subscribe(
       () => this.router.navigate(['courses']),
-      (err) => console.error(err),
+      (err) => console.error('err: ', err),
     )
   }
 

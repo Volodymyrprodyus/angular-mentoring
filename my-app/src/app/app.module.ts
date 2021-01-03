@@ -10,6 +10,7 @@ import { CoreModule } from './core';
 import { AddCoursePageModule } from './add-course-page';
 import { NotFoundPageModule } from './no-found-page';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
 
 @NgModule({
@@ -28,7 +29,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     NotFoundPageModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

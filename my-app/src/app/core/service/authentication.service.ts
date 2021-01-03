@@ -17,8 +17,8 @@ export class AuthenticationService {
 
   login(value: UserLogin): Observable<UserInfo> {
     return this.httpService.getAuthToken(value).pipe(
-      switchMap(token => this.httpService.getUserInfo(token)),
-      tap(value => console.log(window.localStorage.setItem(this.userAuthKey, JSON.stringify(value))))
+      switchMap((token) => this.httpService.getUserInfo(token)),
+      tap((value)=> window.localStorage.setItem(this.userAuthKey, JSON.stringify(value)))
     );
   }
 
