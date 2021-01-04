@@ -1,21 +1,21 @@
 <div class="item-content">
     <div class="item-section">
         <div class="item-header">
-            <div class="item-title">{{ course.title | uppercase }}
+            <div class="item-title">{{ course.name | uppercase }}
                 <img src="assets/icons/ic_star.svg" alt="img" class="icon
-                    ic-star" *ngIf="course.topRated" />
+                    ic-star" *ngIf="course.isTopRated" />
             </div>
             <section class="time-date-section">
                 <div class="time-section">
                     <p class="duration time"><img class="icon"
                             src="assets/icons/ic_clock.svg" alt="img">
-                        <span>{{ course.duration | duration }}</span>
+                        <span>{{ course.length | duration }}</span>
                     </p>
                 </div>
                 <div class="date-section">
                     <p class="duration date"><img class="icon"
                             src="assets/icons/ic_calendar.svg" alt="img">
-                        <span>{{ course.creationDate | date: 'shortDate' }}</span>
+                        <span>{{ course.date | date: 'shortDate' }}</span>
                     </p>
                 </div>
             </section>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="buttons-section">
-        <button class="edit-button button" (click)="onEdit()">
+        <button class="edit-button button" [routerLink]="['/courses', course.id]">
             <img src="assets/icons/ic_edit.svg" alt="img">
             <span>Edit</span>
         </button>

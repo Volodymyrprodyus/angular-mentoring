@@ -5,11 +5,12 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { DurationPipe } from '../../shared/pipes';
 import { CourseItemComponent } from './course-item.component';
 import { CourseDeleteDialogComponent } from '../course-delete-dialog';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, OverlayModule],
+  imports: [CommonModule, FormsModule, OverlayModule, RouterModule],
   declarations: [CourseItemComponent, DurationPipe, CourseDeleteDialogComponent],
-  exports: [CourseItemComponent, CourseDeleteDialogComponent, DurationPipe],
+  exports: [CourseItemComponent, CourseDeleteDialogComponent],
 })
 
 export class CourseItemModule {}

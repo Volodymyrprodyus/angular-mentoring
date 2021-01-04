@@ -12,12 +12,7 @@ export class CourseItemComponent {
 
   @Input() course: Course;
 
-  @Output() edit = new EventEmitter<Course>();
   @Output() delete = new EventEmitter<Course>();
-
-  onEdit(): void {
-    this.edit.emit(this.course);
-  }
 
   onDelete(): void {
     this.delete.emit(this.course);

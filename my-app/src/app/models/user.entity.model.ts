@@ -1,13 +1,13 @@
 export interface IUserEntity {
     id: number;
-    FirstName: string;
+    firstName: string;
     lastName: string;
 }
 
 export class UserEntity implements IUserEntity {
     constructor(
         public id: number,
-        public FirstName: string,
+        public firstName: string,
         public lastName: string
     ) {}
 }

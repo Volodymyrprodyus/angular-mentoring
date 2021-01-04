@@ -2,11 +2,11 @@
   <header class="delete-popup-header">
       <p>Delete this course?</p>
       <img src="assets/icons/ic_close.svg" alt="img" class="close-icon"
-          (click)="cancel.emit()" />
+          (click)="onCourseDelete()" />
   </header>
   <hr class="hr-washed">
   <main class="popup-content">Do you really want to delete <br />{{
-      course.title | uppercase }}?</main>
+      course.name | uppercase }}?</main>
   <hr class="hr-washed">
   <footer class="popup-buttons">
       <button class="cancel-btn popup-btn" (click)="cancel.emit()">Cancel</button>

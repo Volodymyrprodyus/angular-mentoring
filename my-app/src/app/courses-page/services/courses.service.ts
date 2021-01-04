@@ -1,60 +1,76 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Course } from '../../models/course.model';
 
 import { v4 as uuidv4 } from 'uuid';
+import { HttpService } from '../../core/service/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
-  courses: Course[] = [
-    new Course(1,
-      'Video Course 1. Name tag',
-      new Date('2020/12/01'),
-      150,
-      `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.`,
-      true),
-    new Course(1,
-      'Video Course 2. Name tag',
-      new Date('2020/10/28'),
-      320,
-      `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.`,
-      false),
-    new Course(1,
-      'Video Course 3. Name tag',
-      new Date('2020/11/24'),
-      0,
-      `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.`,
-      false),
-  ];
+  private paginationSize: number = 3;
 
-  constructor() { }
+  constructor(private httpService: HttpService) { }
 
-  getCoursesList(): Course[] {
-    return this.courses;
-  }
-
-  createCourseItem(course: Partial<Course>): Course[] {
-    const createdCourse = {
-      id: uuidv4(),
-      title: course.title || null,
-      creationDate: course.creationDate || null,
-      duration: course.duration || null,
-      description: course.description || null
+  getCoursesList(): Observable<Course[]> {
+    const requestBody = {
+      count: this.paginationSize,
+      sort: 'date'
     }
-    return [...this.courses, createdCourse];
+    return this.httpService.getCourses(requestBody);
   }
 
-  getCourseById(id: number): Course {
-    return this.courses.find(courseItem => courseItem.id === id);
+  createCourseItem(course: Partial<Course>): Observable<Course> {
+    const createdCourse = this.changeCourse(course)
+    return this.httpService.addCourse(createdCourse);
   }
 
-  updateCourseItem(course: Course): Course[] {
-    return [...this.courses, course];
+  getCourseById(id: number): Observable<Course> {
+    return this.httpService.getCourse(id);
   }
 
-  removeCourseItem(course: Course): void {
-    this.courses = this.courses.filter(courseItem => courseItem !== course);
+  getSearchedCourses(searchPhrase: string) {
+    const requestBody = {
+      textFragment: searchPhrase,
+      sort: 'date'
+    }
+    return this.httpService.getCourses(requestBody);
+  }
+
+  updateCourseItem(course: Partial<Course>): Observable<Course> {
+    const updatedCourse = this.changeCourse(course);
+    return this.httpService.updateCourse(updatedCourse);
+  }
+
+  removeCourseItem(course: Course): Observable<Course> {
+    return this.httpService.deleteCourse(course.id);
+  }
+
+  loadMoreCourses(): Observable<Course[]> {
+    this.paginationSize += 3;
+
+    const requestBody = {
+      count: this.paginationSize,
+      sort: 'date'
+    }
+
+    return this.httpService.getCourses(requestBody);
+  }
+
+  private changeCourse(course : Partial<Course>): Course {
+    return {
+      id: course.id || uuidv4(),
+      name: course.name || null,
+      date: course.date || null,
+      length: course.length || null,
+      description: course.description || null,
+      authors: {
+        id: course?.authors?.id || null,
+        name: course?.authors?.name || null,
+      },
+      isTopRated: course.isTopRated
+    }
   }
 }
