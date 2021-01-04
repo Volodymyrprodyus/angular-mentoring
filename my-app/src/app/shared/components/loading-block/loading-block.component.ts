@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { delay } from 'rxjs/operators';
 import { LoadingService } from 'src/app/core/service/loading.service';
 
 @Component({
@@ -8,17 +9,21 @@ import { LoadingService } from 'src/app/core/service/loading.service';
 })
 export class LoadingBlockComponent implements OnInit {
 
-  loading: boolean;
+public loading: boolean = false;
 
-  constructor(private loadingService: LoadingService) {
+  constructor(
+    private _loading: LoadingService
+  ){ }
 
-    this.loadingService.isLoading.subscribe((v) => {
-      console.log(v);
-      this.loading = v;
-    });
-
-  }
   ngOnInit() {
+    this.listenToLoading();
   }
 
+  listenToLoading(): void {
+    this._loading.loadingSub
+      .pipe(delay(0))
+      .subscribe((loading) => {
+        this.loading = loading;
+      });
+  }
 }

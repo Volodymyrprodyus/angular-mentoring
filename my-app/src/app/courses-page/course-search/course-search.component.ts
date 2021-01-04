@@ -9,10 +9,7 @@ import { debounceTime, delay, distinctUntilChanged, filter, map, mergeMap } from
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseSearchComponent implements OnInit, OnDestroy {
-  // inputValue: string;
-
   private subscriptions: Subscription = new Subscription();
-
   public keyUp = new Subject<KeyboardEvent>();
 
   @Output() searchPhrase = new EventEmitter<string>();
@@ -21,12 +18,9 @@ export class CourseSearchComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.keyUp.pipe(
         map((event: any) => event.target.value),
-        filter((res) => res.length > 2),
+        filter((res) => res.length > 2 || res === ''),
         debounceTime(1000),
         distinctUntilChanged(),
-        mergeMap(search => of(search).pipe(
-          delay(500),
-        )),
       ).subscribe((value) => {
         this.searchPhrase.emit(value);
       })

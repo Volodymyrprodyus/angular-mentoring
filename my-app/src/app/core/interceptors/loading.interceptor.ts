@@ -8,53 +8,34 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoadingService } from '../service/loading.service';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
   private requests: HttpRequest<any>[] = [];
 
-  constructor(private LoadingService: LoadingService) {}
+  constructor(private _loading: LoadingService) {}
 
-  public removeRequest(req: HttpRequest<any>) {
-    const i = this.requests.indexOf(req);
-    if (i >= 0) {
-      this.requests.splice(i, 1);
-    }
-    this.LoadingService.isLoading.next(this.requests.length > 0);
-  }
-
-  public intercept(
-    req: HttpRequest<any>,
+  intercept(
+    request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.requests.push(req);
-
-    console.log('Number of requests---> ', this.requests.length);
-
-    this.LoadingService.isLoading.next(true);
-    return new Observable((observer) => {
-      const subscription = next.handle(req).subscribe(
-        (event) => {
-          if (event instanceof HttpResponse) {
-            this.removeRequest(req);
-            observer.next(event);
+    this._loading.setLoading(true, request.url);
+    return next
+      .handle(request)
+      .pipe(
+        catchError((err) => {
+          this._loading.setLoading(false, request.url);
+          return err;
+        })
+      )
+      .pipe(
+        map<HttpEvent<any>, any>((evt: HttpEvent<any>) => {
+          if (evt instanceof HttpResponse) {
+            this._loading.setLoading(false, request.url);
           }
-        },
-        (err) => {
-          alert('error' + err);
-          this.removeRequest(req);
-          observer.error(err);
-        },
-        () => {
-          this.removeRequest(req);
-          observer.complete();
-        }
+          return evt;
+        })
       );
-      // remove request from queue when cancelled
-      return () => {
-        this.removeRequest(req);
-        subscription.unsubscribe();
-      };
-    });
   }
 }

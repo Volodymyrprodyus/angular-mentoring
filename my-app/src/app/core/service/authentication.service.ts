@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
-import { UserInfo } from 'src/app/models/user-info.model';
 import { HttpService } from './http.service';
 
 import { UserLogin } from '../../models/user-login.model';
 import{ GlobalConstants } from '../../shared/constans/global-constants';
+import { UserInfo } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -37,16 +37,18 @@ export class AuthenticationService {
   }
 
   public getUserData(): Observable<UserInfo> {
-    return new Observable((obs) => {
-      obs.next(this.getUserInfo());
-      obs.complete();
-    });
+    // return new Observable((obs) => {
+    //   obs.next(this.getUserInfo());
+    //   obs.complete();
+    // });
+    return of(this.getUserInfo());
   }
 
   public isAuthenticated(): Observable<boolean> {
-    return new Observable((obs) => {
-      obs.next(this.isUserAuthenticated());
-      obs.complete();
-    });
+    // return new Observable((obs) => {
+    //   obs.next(this.isUserAuthenticated());
+    //   obs.complete();
+    // });
+    return of(this.isUserAuthenticated());
   }
 }

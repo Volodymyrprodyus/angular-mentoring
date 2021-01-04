@@ -1,6 +1,6 @@
-<div class="progress-loader" [hidden]="!loading">
-  <div class="loading-spinner">
-      <img src="../../../../assets/svg/loading.svg">
-      <span class="loading-message">Please wait...</span>
-  </div>
+<div *ngIf="loading" class="loading-container flex-content-center">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
 </div>
