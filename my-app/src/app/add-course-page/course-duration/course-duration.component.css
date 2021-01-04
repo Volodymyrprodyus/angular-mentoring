@@ -1,11 +1,12 @@
 .form-field {
   margin: 10px 0;
-  width: 230px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: flex-end;
-  width: 180px;
+}
+
+.input-wrapper {
+  width: 200px;
 }
 
 .form-field-lable {
@@ -33,6 +34,6 @@
   border-radius: 3px;
 }
 
-.duration-calcelation {
+.duration-calcel-page {
   padding-bottom: 10px;
 }

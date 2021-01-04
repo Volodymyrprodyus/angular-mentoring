@@ -1,7 +1,11 @@
+import { ElementRef, OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { AuthenticationService } from '../core/service/authentication.service';
+import { UserInfo } from '../models';
 
 import { Course } from '../models/course.model';
-import { FilterPipe } from '../shared/pipes';
 import { CoursesService } from './services';
 
 @Component({
@@ -9,40 +13,47 @@ import { CoursesService } from './services';
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.css']
 })
-export class CoursesPageComponent {
-  foundCourses: Course[];
+export class CoursesPageComponent implements OnInit, OnDestroy {
+  public foundCourses: Course[];
+  public searchPhrase: string;
+  public courses$: Observable<Course[]>;
+  public userData$: Observable<UserInfo>;
+  private unsubscribe: Subject<void> = new Subject();
 
-  get filteredCourses() {
-    return this.foundCourses ? this.foundCourses : this.courses;
-  }
+  constructor(private coursesService: CoursesService, private authService: AuthenticationService) {}
 
-  get courses() {
-    return this.coursesService.getCoursesList();
-  }
 
-  get isCoursesAvailable() {
-    return !!this.filteredCourses.length;
-  }
+  ngOnInit(): void {
+    this.courses$ = this.coursesService.getCoursesList();
 
-  constructor(private filterPipe: FilterPipe, private coursesService: CoursesService) {}
-
-  onAddNewCourse(): void {
-    console.log('Add new course!');
+    this.userData$ = this.authService.getUserData();
   }
 
   onDeleteCourse(course: Course): void {
-    this.coursesService.removeCourseItem(course);
-  }
-
-  onEditCourse(course: Course): void {
-    console.log(`Edit course ${course.title} with id ${course.id}`);
+    this.coursesService.removeCourseItem(course).pipe(
+      takeUntil(this.unsubscribe)
+    ).subscribe(
+      () => {
+        this.courses$ = this.searchPhrase 
+          ? this.coursesService.getSearchedCourses(this.searchPhrase) 
+          : this.coursesService.getCoursesList();
+      },
+      (err) => console.error(err),
+    )
   }
 
   onLoadMoreCourses(): void {
     console.log('Load more courses');
+    this.courses$ = this.coursesService.loadMoreCourses();
   }
 
   onCourseSearch(searchPhrase: string): void {
-    this.foundCourses = this.filterPipe.transform(this.courses, searchPhrase);
+    this.searchPhrase = searchPhrase;
+    this.courses$ = this.coursesService.getSearchedCourses(searchPhrase);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

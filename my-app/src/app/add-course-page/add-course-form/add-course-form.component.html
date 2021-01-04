@@ -1,4 +1,4 @@
-<header class="new-course-header">New course</header>
+<header class="new-course-header">{{ coursePageTitle }}</header>
 <form class="new-course-form">
     <div class="form-field">
         <label
@@ -13,7 +13,7 @@
             id="title"
             class="form-field-input"
             placeholder="Text input"
-            [(ngModel)]="value.title"
+            [(ngModel)]="value.name"
             name="title"
             required
         >
@@ -37,8 +37,8 @@
             required
         ></textarea>
     </div>
-    <app-course-date [(courseDate)]="value.creationDate"></app-course-date>
-    <app-course-duration [(courseDuration)]="value.duration"></app-course-duration>
+    <app-course-date [(courseDate)]="value.date"></app-course-date>
+    <app-course-duration [(courseDuration)]="value.length"></app-course-duration>
     <app-course-authors></app-course-authors>
     <div class="buttons-block">
         <button
@@ -49,7 +49,7 @@
             Cancel
         </button>
         <button
-            type="submit"
+            type="button"
             class="submit-button add-course-btn"
             (click)="onSave()"
         >

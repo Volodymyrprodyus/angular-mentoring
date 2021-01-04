@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { of, Subject, Subscription } from 'rxjs';
+import { debounceTime, delay, distinctUntilChanged, filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-course-search',
@@ -6,13 +8,26 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
   styleUrls: ['./course-search.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseSearchComponent {
-  inputValue: string;
+export class CourseSearchComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription = new Subscription();
+  public keyUp = new Subject<KeyboardEvent>();
 
   @Output() searchPhrase = new EventEmitter<string>();
 
-  onClick(): void {
-    this.searchPhrase.emit(this.inputValue);
-  }
+  public ngOnInit(): void {
+    this.subscriptions.add(
+      this.keyUp.pipe(
+        map((event: any) => event.target.value),
+        filter((res) => res.length > 2 || res === ''),
+        debounceTime(1000),
+        distinctUntilChanged(),
+      ).subscribe((value) => {
+        this.searchPhrase.emit(value);
+      })
+    );
+}
 
+  public ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 }

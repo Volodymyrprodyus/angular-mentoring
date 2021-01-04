@@ -10,7 +10,8 @@ import { LogInButtonModule } from '../shared/components/log-in-button/log-in-but
 import { BreadcrumbsModule } from '../shared/components/breadcrumbs/breadcrumbs.module';
 import { CourseSearchModule } from './course-search';
 import { CoursesListModule } from './courses-list/courses-list.module';
-import { DurationPipe } from '../shared/pipes/duration.pipe';
+import { CoursesPageRoutingModule } from './courses-page-routing.module';
+
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DurationPipe } from '../shared/pipes/duration.pipe';
     LogInButtonModule,
     CourseSearchModule,
     CoursesListModule,
+    CoursesPageRoutingModule,
   ],
   exports: [
     CoursesPageComponent

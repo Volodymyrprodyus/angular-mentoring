@@ -1,32 +1,54 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
+import { HttpService } from './http.service';
 
 import { UserLogin } from '../../models/user-login.model';
 import{ GlobalConstants } from '../../shared/constans/global-constants';
+import { UserInfo } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private isLoggedIn: boolean = false; 
-  userAuthKey = GlobalConstants.userAuthKey;
+  private userAuthKey = GlobalConstants.userAuthKey;
 
-  constructor() {}
+  constructor(private httpService: HttpService) {}
 
-  login(key: string, value: UserLogin): void {
-    window.localStorage.setItem(key, JSON.stringify(value));
-    this.isLoggedIn = true;
+  public login(value: UserLogin): Observable<UserInfo> {
+    return this.httpService.getAuthToken(value).pipe(
+      switchMap((token) => this.httpService.getUserInfo(token)),
+      tap((value)=> {
+        return window.localStorage.setItem(this.userAuthKey, JSON.stringify(value))
+      })
+    );
   }
 
-  logout(key: string = this.userAuthKey): void {
-    window.localStorage.removeItem(key);
-    this.isLoggedIn = false;
+  public logout(): void {
+    window.localStorage.removeItem(this.userAuthKey);
   }
 
-  isAuthenticated(): boolean {
-    return this.isLoggedIn;
+  public isUserAuthenticated(): boolean {
+    return this.getUserInfo() !== null;
   }
 
-  getUserInfo(key: string = this.userAuthKey): UserLogin {
-    return JSON.parse(window.localStorage.getItem(key));
+  public getUserInfo(): UserInfo {
+    return JSON.parse(window.localStorage.getItem(this.userAuthKey));
+  }
+
+  public getUserData(): Observable<UserInfo> {
+    // return new Observable((obs) => {
+    //   obs.next(this.getUserInfo());
+    //   obs.complete();
+    // });
+    return of(this.getUserInfo());
+  }
+
+  public isAuthenticated(): Observable<boolean> {
+    // return new Observable((obs) => {
+    //   obs.next(this.isUserAuthenticated());
+    //   obs.complete();
+    // });
+    return of(this.isUserAuthenticated());
   }
 }

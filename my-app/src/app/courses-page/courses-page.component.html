@@ -1,12 +1,11 @@
 <app-header>
     <app-fake-logo></app-fake-logo>
     <div>
-        <app-log-in-button></app-log-in-button>
+        <app-log-in-button [userData]="userData$ | async"></app-log-in-button>
     </div>
 </app-header>
 <app-breadcrumbs>
     <a
-        routerLink="/"
         class="breadcrumbs-text"
     >
         Courses
@@ -16,18 +15,17 @@
 
 <button
     class="add-button"
-    (click)="onAddNewCourse()"
+    routerLink="./addNew"
 >
     <div class="add-button-icon">+</div>
     Add course
 </button>
 
 <app-courses-list
-    [courses]="filteredCourses"
+    [courses]="courses"
     (delete)="onDeleteCourse($event)"
-    (edit)="onEditCourse($event)"
     (loadmoreCourse)="onLoadMoreCourses()"
-    *ngIf="isCoursesAvailable; else noDataMessage"
+    *ngIf="courses$ | async; let courses; else noDataMessage"
 >
 </app-courses-list>
 <ng-template #noDataMessage>
