@@ -28,7 +28,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     const newRequest: HttpRequest<any> = request.clone({
       setHeaders: {
-        'Authorization': `${this.authService.getUserInfo().fakeToken}`,
+        'Authorization': `${this.authService.getUserInfo()?.fakeToken}`,
       },
     });
     return next.handle(newRequest);

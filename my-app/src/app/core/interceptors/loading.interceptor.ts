@@ -30,11 +30,11 @@ export class LoaderInterceptor implements HttpInterceptor {
         })
       )
       .pipe(
-        map<HttpEvent<any>, any>((evt: HttpEvent<any>) => {
-          if (evt instanceof HttpResponse) {
+        map<HttpEvent<any>, any>((event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse) {
             this._loading.setLoading(false, request.url);
           }
-          return evt;
+          return event;
         })
       );
   }

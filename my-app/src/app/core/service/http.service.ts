@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Course, Token, UserInfo, UserLogin } from "src/app/models";
 import { Observable } from "rxjs";
 import { RequestBody } from "src/app/models/request-body.model";
+import { GlobalConstants } from "src/app/shared/constans/global-constants";
 
 @Injectable({
 	providedIn: 'root'
 })
 
 export class HttpService {
-	public baseUrl: string = 'http://localhost:3004';
+	private baseUrl: string = GlobalConstants.baseUrl;
 
 	constructor(private _http: HttpClient) {}
 

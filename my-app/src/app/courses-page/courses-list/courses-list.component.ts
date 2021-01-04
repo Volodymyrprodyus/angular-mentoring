@@ -16,7 +16,7 @@ export class CoursesListComponent {
 
   constructor() { }
 
-  trackByFunc(index: number, course: Course) {
+  trackByFunc(index: number, course: Course): number {
     return course.id;
   }
 
