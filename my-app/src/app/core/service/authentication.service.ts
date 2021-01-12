@@ -16,7 +16,8 @@ export class AuthenticationService {
   constructor(private httpService: HttpService) {}
 
   public login(value: UserLogin): Observable<UserInfo> {
-    return this.httpService.getAuthToken(value).pipe(
+    return this.httpService.getAuthToken(value)
+    .pipe(
       switchMap((token) => this.httpService.getUserInfo(token)),
       tap((value)=> {
         return window.localStorage.setItem(this.userAuthKey, JSON.stringify(value))
@@ -37,18 +38,10 @@ export class AuthenticationService {
   }
 
   public getUserData(): Observable<UserInfo> {
-    // return new Observable((obs) => {
-    //   obs.next(this.getUserInfo());
-    //   obs.complete();
-    // });
     return of(this.getUserInfo());
   }
 
   public isAuthenticated(): Observable<boolean> {
-    // return new Observable((obs) => {
-    //   obs.next(this.isUserAuthenticated());
-    //   obs.complete();
-    // });
     return of(this.isUserAuthenticated());
   }
 }

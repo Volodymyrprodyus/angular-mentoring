@@ -22,7 +22,7 @@
 </button>
 
 <app-courses-list
-    [courses]="courses"
+    [courses]="courses$ | async"
     (delete)="onDeleteCourse($event)"
     (loadmoreCourse)="onLoadMoreCourses()"
     *ngIf="courses$ | async; let courses; else noDataMessage"

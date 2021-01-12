@@ -6,6 +6,7 @@ import { AuthenticationService } from '../core/service/authentication.service';
 import { UserInfo } from '../models';
 
 import { Course } from '../models/course.model';
+import { ContextStoreFacadeService } from '../store/context-store/services/store-facade.service';
 import { CoursesService } from './services';
 
 @Component({
@@ -16,40 +17,50 @@ import { CoursesService } from './services';
 export class CoursesPageComponent implements OnInit, OnDestroy {
   public foundCourses: Course[];
   public searchPhrase: string;
-  public courses$: Observable<Course[]>;
+  public courses$: Observable<Course[]> = this.contextStoreFacadeService.selectCoursesList();
   public userData$: Observable<UserInfo>;
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private coursesService: CoursesService, private authService: AuthenticationService) {}
+  constructor(private coursesService: CoursesService, private authService: AuthenticationService, private contextStoreFacadeService: ContextStoreFacadeService) {}
 
 
   ngOnInit(): void {
-    this.courses$ = this.coursesService.getCoursesList();
+    // this.courses$ = this.coursesService.getCoursesList();
 
     this.userData$ = this.authService.getUserData();
   }
 
   onDeleteCourse(course: Course): void {
-    this.coursesService.removeCourseItem(course).pipe(
-      takeUntil(this.unsubscribe)
-    ).subscribe(
-      () => {
-        this.courses$ = this.searchPhrase 
-          ? this.coursesService.getSearchedCourses(this.searchPhrase) 
-          : this.coursesService.getCoursesList();
-      },
-      (err) => console.error(err),
-    )
+    // this.coursesService.removeCourseItem(course).pipe(
+    //   takeUntil(this.unsubscribe)
+    // ).subscribe(
+    //   () => {
+    //     this.courses$ = this.searchPhrase 
+    //       ? this.coursesService.getSearchedCourses(this.searchPhrase) 
+    //       : this.coursesService.getCoursesList();
+    //   },
+    //   (err) => console.error(err),
+    // )
+    if (Boolean(course.id)) {
+      this.contextStoreFacadeService.dispatchDeleteCourse({ ...course });
+    }
+    this.contextStoreFacadeService.dispatchFetchCoursesList();
   }
 
   onLoadMoreCourses(): void {
-    console.log('Load more courses');
-    this.courses$ = this.coursesService.loadMoreCourses();
+    // console.log('Load more courses');
+    // this.courses$ = this.coursesService.loadMoreCourses();
+    this.contextStoreFacadeService.dispatchLoadMoreCourses();
   }
 
   onCourseSearch(searchPhrase: string): void {
-    this.searchPhrase = searchPhrase;
-    this.courses$ = this.coursesService.getSearchedCourses(searchPhrase);
+    // this.searchPhrase = searchPhrase;
+    // this.courses$ = this.coursesService.getSearchedCourses(searchPhrase);
+    this.contextStoreFacadeService.dispatchSearchCourses(searchPhrase);
+
+    if (searchPhrase === '') {
+      this.contextStoreFacadeService.dispatchFetchCoursesList();
+    }
   }
 
   ngOnDestroy(): void {
