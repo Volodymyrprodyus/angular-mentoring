@@ -10,6 +10,7 @@ import { Course } from '../../models';
 
 export class CoursesListComponent {
   @Input() courses: Course[];
+  @Input() public isOnline: boolean;
 
   @Output() delete = new EventEmitter<Course>();
   @Output() loadmoreCourse = new EventEmitter<void>();
@@ -25,6 +26,8 @@ export class CoursesListComponent {
   }
 
   onLoadMoreCourses(): void {
-    this.loadmoreCourse.emit();
+    if (this.isOnline) {
+      this.loadmoreCourse.emit();
+    }
   }
 }

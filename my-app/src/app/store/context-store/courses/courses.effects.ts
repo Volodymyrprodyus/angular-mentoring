@@ -57,10 +57,30 @@ export class CoursesEffects {
     )
   );
 
+  public addCourse$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(coursesActions.addCourse),
+      switchMap(({ course }) => this.coursesService.createCourseItem(course)),
+      map(() =>
+        coursesActions.addCourseSuccess()
+      ),
+      catchError(() => of(coursesActions.addCourseError()))
+    )
+  );
+
+  public updateCourse$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(coursesActions.updateCourse),
+      switchMap(({ course }) => this.coursesService.updateCourseItem(course)),
+      map(() =>
+        coursesActions.updateCourseSuccess()
+      ),
+      catchError(() => of(coursesActions.updateCourseError()))
+    )
+  );
+
   constructor(
     private actions$: Actions,
-    private httpService: HttpService,
-    private authService: AuthenticationService,
     private coursesService: CoursesService
   ) {}
 }

@@ -4,5 +4,7 @@ import { UserInfo } from "src/app/models/user-info.model";
 
 import { AuthActionTypes } from "./auth.action-types";
 
-export const logIn = createAction(AuthActionTypes.LogIn, props<{ login: string, password: string }>());
-export const logInSuccess = createAction(AuthActionTypes.LogInSuccess, props<{ login: string, password: string }>());
+export const logIn = createAction(AuthActionTypes.LogIn, props<{ userData: UserLogin }>());
+export const logInSuccess = createAction(AuthActionTypes.LogInSuccess, props<{ userData: UserInfo }>());
+export const loginError = createAction(AuthActionTypes.LogInError, props<{ error: Error | null }>());
+export const logOut = createAction(AuthActionTypes.LogOut);

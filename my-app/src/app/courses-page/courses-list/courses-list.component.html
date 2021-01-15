@@ -2,7 +2,13 @@
     [appCourseCreation]="course?.date" [ngClass]="{topCourse: course?.isTopRated}">
 </app-course-item>
 <section>
-    <button class="load-more-button">
-        <a class="load-more-text" (click)="onLoadMoreCourses()">Load more</a>
+    <button class="load-more-button"
+        [ngClass]="isOnline ? 'online' : 'offline'"
+        [attr.disabled]="!isOnline ? '' : null">
+        <a class="load-more-text" (click)="onLoadMoreCourses()"
+        [ngClass]="isOnline ? 'online' : 'offline'"
+        [attr.disabled]="!isOnline ? '' : null">
+        Load more
+        </a>
     </button>
 </section>

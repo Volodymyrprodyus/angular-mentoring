@@ -11,4 +11,10 @@ export enum CoursesActionTypes {
 	DeleteCourse = '[MyApp] Delete Course',
 	DeleteCourseSuccess = '[MyApp] Delete Course Success',
 	DeleteCourseError = '[MyApp] Delete Course Error',
+	AddCourse = '[MyApp] Add Course',
+	AddCourseSuccess = '[MyApp] Add Course Success',
+	AddCourseError = '[MyApp] Add Course Error',
+	UpdateCourse = '[MyApp] Update Course',
+	UpdateCourseSuccess = '[MyApp] Update Course Success',
+	UpdateCourseError = '[MyApp] Update Course Error',
 }

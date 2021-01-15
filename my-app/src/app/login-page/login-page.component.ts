@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { AuthenticationService } from '../core/service/authentication.service';
-import { GlobalConstants } from '../shared/constans/global-constants';
+import { ContextStoreFacadeService } from '../store/context-store/services/store-facade.service';
 
 @Component({
   selector: 'app-login-page',
@@ -23,7 +20,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     return this.loginForm.get('password');
   }
   
-  constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {}
+  constructor(private fb: FormBuilder, private contextStoreFacadeService: ContextStoreFacadeService) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -34,12 +31,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       login: this.login.value,
       password: this.password.value
     }
-    this.auth.login(userData).pipe(
-      takeUntil(this.unsubscribe)
-    ).subscribe(
-      () => this.router.navigate(['courses']),
-      (err) => console.error('err: ', err),
-    )
+
+    this.contextStoreFacadeService.dispatchLogIn({ userData });
   }
 
   private buildForm(): void {

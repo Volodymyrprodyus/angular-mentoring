@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Course, UserLogin } from "src/app/models";
+import { Course } from "src/app/models";
 import { CoursesActionTypes } from "./courses.action-types";
 
 export const fetchCoursesFromApi = createAction(CoursesActionTypes.FetchCoursesFromApi);
@@ -14,3 +14,9 @@ export const searchCoursesError = createAction(CoursesActionTypes.SearchCoursesE
 export const deleteCourse = createAction(CoursesActionTypes.DeleteCourse, props<{ course: Course }>());
 export const deleteCourseSuccess = createAction(CoursesActionTypes.DeleteCourseSuccess);
 export const deleteCourseError = createAction(CoursesActionTypes.DeleteCourseError);
+export const addCourse = createAction(CoursesActionTypes.AddCourse, props<{ course: Partial<Course> }>());
+export const addCourseSuccess = createAction(CoursesActionTypes.AddCourseSuccess);
+export const addCourseError = createAction(CoursesActionTypes.AddCourseError);
+export const updateCourse = createAction(CoursesActionTypes.UpdateCourse, props<{ course: Partial<Course> }>());
+export const updateCourseSuccess = createAction(CoursesActionTypes.UpdateCourseSuccess);
+export const updateCourseError = createAction(CoursesActionTypes.UpdateCourseError);
