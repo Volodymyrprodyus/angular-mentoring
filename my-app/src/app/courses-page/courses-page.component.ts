@@ -1,5 +1,5 @@
 import { OnDestroy } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { UserInfo } from '../models';
 
@@ -11,7 +11,7 @@ import { ContextStoreFacadeService } from '../store/context-store/services/store
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.css']
 })
-export class CoursesPageComponent implements OnInit, OnDestroy {
+export class CoursesPageComponent implements OnDestroy {
   public foundCourses: Course[];
   public searchPhrase: string;
   public courses$: Observable<Course[]> = this.contextStoreFacadeService.selectCoursesList();
@@ -21,16 +21,10 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   constructor( private contextStoreFacadeService: ContextStoreFacadeService) {}
 
-
-  ngOnInit(): void {
-    
-  }
-
   onDeleteCourse(course: Course): void {
     if (Boolean(course.id)) {
       this.contextStoreFacadeService.dispatchDeleteCourse({ ...course });
     }
-    this.contextStoreFacadeService.dispatchFetchCoursesList();
   }
 
   onLoadMoreCourses(): void {
@@ -39,10 +33,6 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   onCourseSearch(searchPhrase: string): void {
     this.contextStoreFacadeService.dispatchSearchCourses(searchPhrase);
-
-    if (searchPhrase === '') {
-      this.contextStoreFacadeService.dispatchFetchCoursesList();
-    }
   }
 
   ngOnDestroy(): void {
