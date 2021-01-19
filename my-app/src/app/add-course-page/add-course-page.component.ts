@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { AuthenticationService } from '../core/service/authentication.service';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { CoursesService } from '../courses-page/services';
 import { Course, UserInfo } from '../models';
+import { ContextStoreFacadeService } from '../store/context-store/services/store-facade.service';
 
 @Component({
   selector: 'app-add-course-page',
@@ -12,17 +11,25 @@ import { Course, UserInfo } from '../models';
   styleUrls: ['./add-course-page.component.scss']
 })
 export class AddCoursePageComponent implements OnInit, OnDestroy {
+  public isCourseInList: boolean = false;
   public course$: Observable<Course>;
-  public userData$: Observable<UserInfo>;
+  public courses$: Observable<Course[]> = this.contextStoreFacadeService.selectCoursesList();
+  public userData$: Observable<UserInfo> = this.contextStoreFacadeService.selectUserData();
   public courseId: string;
   private unsubscribe: Subject<void> = new Subject();
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private coursesService: CoursesService,
-    private authService: AuthenticationService,
+    private contextStoreFacadeService: ContextStoreFacadeService,
     private router: Router,
     private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.subscriptions.add(
+      this.contextStoreFacadeService.selectCoursesList().subscribe((courses: Course[]) => {
+      this.isCourseInList = Boolean(courses.find((courseItem) => courseItem.id === Number(this.route.snapshot.paramMap.get('id'))));
+      })
+  );
     this.courseId = this.route.snapshot.paramMap.get('id');
     const courseIdToNumber = Number(this.courseId);
 
@@ -30,35 +37,28 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
       this.course$ = this.coursesService.getCourseById(courseIdToNumber);
     }
 
-    this.userData$ = this.authService.getUserData();
   }
 
   onCreateNewCourse(course: Partial<Course>): void {
-    if (this.course$) {
-      this.coursesService.updateCourseItem(course).pipe(
-        takeUntil(this.unsubscribe)
-      ).subscribe(
-        () => this.coursesService.getCoursesList(),
-        (err) => console.error(err),
-      )
+    if (this.isCourseInList) {
+      this.contextStoreFacadeService.dispatchUpdateCourse({ course })
+      console.log('this.isCourseInList true');
+      
     } else {
-      this.coursesService.createCourseItem(course).pipe(
-        takeUntil(this.unsubscribe)
-      ).subscribe(
-        () => this.coursesService.getCoursesList(),
-        (err) => console.error(err),
-      );
+      console.log('this.isCourseInList false');
+      this.contextStoreFacadeService.dispatchAddCourse({ course });
+      
     }
     this.router.navigate(['courses']);
   }
 
   onCancel(): void {
-    console.log("Cancell editing");
     this.router.navigate(['courses']);
   }
 
   ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+    this.subscriptions.unsubscribe();
   }
 }

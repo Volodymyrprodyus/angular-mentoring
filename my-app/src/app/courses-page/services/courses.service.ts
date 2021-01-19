@@ -31,7 +31,7 @@ export class CoursesService {
     return this.httpService.getCourse(id);
   }
 
-  getSearchedCourses(searchPhrase: string) {
+  getSearchedCourses(searchPhrase: string): Observable<Course[]> {
     const requestBody = {
       textFragment: searchPhrase,
       sort: 'date'
