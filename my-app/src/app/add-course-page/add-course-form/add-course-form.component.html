@@ -1,58 +1,55 @@
 <header class="new-course-header">{{ coursePageTitle }}</header>
-<form class="new-course-form">
+<form [formGroup]="form"
+    (ngSubmit)="onFormSubmit()"
+    class="new-course-form">
     <div class="form-field">
-        <label
-            for="title"
+        <label for="title"
             class="form-field-lable"
         >
             Title:
-            <span class="required-msg">* required</span>
+            <span *ngIf="titleName.errors.required" class="required-msg">* required</span>
         </label>
-        <input
-            type="text"
+        <input type="text"
             id="title"
             class="form-field-input"
+            [class.has-error]="titleName.invalid"
             placeholder="Text input"
             [(ngModel)]="value.name"
             name="title"
-            required
-        >
+            formControlName="titleName">
     </div>
     <div class="form-field">
-        <label
-            for="description"
+        <label for="description"
             class="form-field-lable"
         >
             Description:
-            <span class="required-msg">* required</span>
+            <span *ngIf="description.errors.required" class="required-msg">* required</span>
         </label>
-        <textarea
-            cols="28"
+        <textarea cols="28"
             rows="5"
             id="description"
+            [class.has-error]="description.invalid"
             class="form-field-textarea"
             placeholder="Add description"
             [(ngModel)]="value.description"
             name="description"
-            required
-        ></textarea>
+            formControlName="description">
+        </textarea>
     </div>
-    <app-course-date [(courseDate)]="value.date"></app-course-date>
+    <app-course-date [class.has-error]="date.invalid" formControlName="date"></app-course-date>
     <app-course-duration [(courseDuration)]="value.length"></app-course-duration>
     <app-course-authors></app-course-authors>
     <div class="buttons-block">
-        <button
-            type="button"
+        <button type="button"
             class="cancel-button add-course-btn"
-            (click)="onCancel()"
-        >
+            (click)="onCancel()">
             Cancel
         </button>
         <button
-            type="button"
+            type="submit"
+            [disabled]="!form.valid"
             class="submit-button add-course-btn"
-            (click)="onSave()"
-        >
+            (click)="onSave()">
             Save
         </button>
     </div>

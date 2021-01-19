@@ -112,3 +112,7 @@
   background-color: #858997;
   color: white;
 }
+
+.has-error {
+  border: crimson 1px solid;
+}
