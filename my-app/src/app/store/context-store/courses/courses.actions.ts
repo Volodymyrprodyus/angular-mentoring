@@ -1,6 +1,6 @@
-import { createAction, props } from "@ngrx/store";
-import { Course } from "src/app/models";
-import { CoursesActionTypes } from "./courses.action-types";
+import { createAction, props } from '@ngrx/store';
+import { Course } from 'src/app/models';
+import { CoursesActionTypes } from './courses.action-types';
 
 export const fetchCoursesFromApi = createAction(CoursesActionTypes.FetchCoursesFromApi);
 export const fetchCoursesSuccess = createAction(CoursesActionTypes.FetchCoursesSuccess, props<{ courses: Course[] }>());

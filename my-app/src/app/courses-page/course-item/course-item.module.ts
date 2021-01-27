@@ -6,10 +6,11 @@ import { DurationPipe } from '../../shared/pipes';
 import { CourseItemComponent } from './course-item.component';
 import { CourseDeleteDialogComponent } from '../course-delete-dialog';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, OverlayModule, RouterModule],
-  declarations: [CourseItemComponent, DurationPipe, CourseDeleteDialogComponent],
+  imports: [CommonModule, FormsModule, OverlayModule, RouterModule, SharedModule],
+  declarations: [CourseItemComponent, CourseDeleteDialogComponent],
   exports: [CourseItemComponent, CourseDeleteDialogComponent],
 })
 

@@ -3,8 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { AuthenticationService } from 'src/app/core';
-import { HttpService } from 'src/app/core/service/http.service';
 import { CoursesService } from 'src/app/courses-page/services';
 import { Course } from 'src/app/models/course.model';
 import * as coursesActions from './courses.actions';

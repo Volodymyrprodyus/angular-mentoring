@@ -1,18 +1,18 @@
 <div class="form-field">
     <label
         for="date"
-        class="form-field-lable"
-    >
+        class="form-field-lable">
         Date:
-        <span class="required-msg">* required</span>
+        <span class="required-msg" *ngIf="validationMsg; else requiredMsg">{{ validationMsg }}</span>
+        <ng-template #requiredMsg>
+            <span class="required">* required</span>
+        </ng-template>
     </label>
     <input
+        [class.has-error-date]="validationMsg"
         type="date"
         id="date"
         class="form-field-input"
-        placeholder="minutes"
-        [ngModel]="courseDate"
-        (ngModelChange)="onDateChange($event)"
-        required
-    >
+        [placeholder]="placeholder"
+        [formControl]="formControl"/>
 </div>

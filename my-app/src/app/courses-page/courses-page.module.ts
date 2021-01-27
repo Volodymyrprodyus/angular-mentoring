@@ -11,6 +11,7 @@ import { BreadcrumbsModule } from '../shared/components/breadcrumbs/breadcrumbs.
 import { CourseSearchModule } from './course-search';
 import { CoursesListModule } from './courses-list/courses-list.module';
 import { CoursesPageRoutingModule } from './courses-page-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -29,6 +30,7 @@ import { CoursesPageRoutingModule } from './courses-page-routing.module';
     CourseSearchModule,
     CoursesListModule,
     CoursesPageRoutingModule,
+    SharedModule,
   ],
   exports: [
     CoursesPageComponent

@@ -1,58 +1,78 @@
 <header class="new-course-header">{{ coursePageTitle }}</header>
-<form class="new-course-form">
+<form [formGroup]="form"
+    (ngSubmit)="onFormSubmit()"
+    class="new-course-form">
     <div class="form-field">
-        <label
-            for="title"
+        <label for="title"
             class="form-field-lable"
         >
             Title:
-            <span class="required-msg">* required</span>
+            <span *ngIf="title?.errors?.required; else requiredMsg" class="required-msg">{{ messages.title }}</span>
+            <ng-template #requiredMsg>
+                <span class="required">* required</span>
+            </ng-template>
         </label>
-        <input
-            type="text"
+        <input type="text"
             id="title"
             class="form-field-input"
+            [class.has-error]="messages.title"
             placeholder="Text input"
-            [(ngModel)]="value.name"
             name="title"
-            required
-        >
+            formControlName="title"
+            (blur)="onBlur($event)">
     </div>
     <div class="form-field">
-        <label
-            for="description"
-            class="form-field-lable"
-        >
+        <label for="description"
+            class="form-field-lable">
             Description:
-            <span class="required-msg">* required</span>
+            <span *ngIf="description?.errors?.required; else requiredMsg" class="required-msg">{{ messages.description }}</span>
+            <ng-template #requiredMsg>
+                <span class="required">* required</span>
+            </ng-template>
         </label>
-        <textarea
-            cols="28"
+        <textarea cols="28"
             rows="5"
             id="description"
+            [class.has-error]="messages.description"
             class="form-field-textarea"
             placeholder="Add description"
-            [(ngModel)]="value.description"
             name="description"
-            required
-        ></textarea>
+            formControlName="description"
+            (blur)="onBlur($event)">
+        </textarea>
     </div>
-    <app-course-date [(courseDate)]="value.date"></app-course-date>
-    <app-course-duration [(courseDuration)]="value.length"></app-course-duration>
-    <app-course-authors></app-course-authors>
+    <app-course-date [isValidForm]="isValidForm"
+                [validationMsg]="messages.date"
+                formControlName="date"
+                (click)="onClick('date')">
+    </app-course-date>
+    <app-course-duration [isValidForm]="isValidForm"
+                [validationMsg]="messages.duration"
+                formControlName="duration"
+                (click)="onClick('duration')">
+    </app-course-duration>
+    <app-autocomplete-select
+                      placeholder="Start typing"
+                      [options]="authorsList"
+                      [validationMsg]="messages.authors"
+                      [isErrors]="isValidForm"
+                      label="Authors"
+                      labelField="name"
+                      searchField="name"
+                      formControlName="authors"
+                      (validOptionsList)="onValidAuthorsTaken($event)"
+                      (click)="onClick('authors')">
+    </app-autocomplete-select>
     <div class="buttons-block">
-        <button
-            type="button"
+        <button type="button"
             class="cancel-button add-course-btn"
-            (click)="onCancel()"
-        >
+            (click)="onCancel()">
             Cancel
         </button>
         <button
-            type="button"
-            class="submit-button add-course-btn"
-            (click)="onSave()"
-        >
+            type="submit"
+            [disabled]="!form.valid"
+            class="submit-button add-course-btn">
             Save
         </button>
     </div>

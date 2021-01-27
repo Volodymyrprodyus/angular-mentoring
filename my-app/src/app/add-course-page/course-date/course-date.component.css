@@ -27,3 +27,17 @@
   font-weight: normal;
   color: rgb(192, 24, 18);
 }
+
+.has-error-date {
+  border: crimson 1px solid !important;
+}
+
+.required {
+  float: right;
+  line-height: 24px;
+  color:rgb(192, 24, 18);
+  font-size: 12px;
+  font-family: var(--my-font-family);
+  text-align: right;
+  font-weight: normal;
+}

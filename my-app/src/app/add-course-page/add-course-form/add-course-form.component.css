@@ -112,3 +112,24 @@
   background-color: #858997;
   color: white;
 }
+
+.has-error {
+  border: crimson 1px solid;
+}
+
+.required-msg {
+  float: right;
+  font-weight: normal;
+  color: rgb(192, 24, 18);
+}
+
+.required {
+  float: right;
+  line-height: 24px;
+  color:rgb(192, 24, 18);
+  font-size: 14px;
+  font-family: var(--my-font-family);
+  text-align: right;
+  font-weight: normal;
+}
+

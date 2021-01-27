@@ -13,6 +13,7 @@
 <div class="add-course-form">
     <app-add-course-form
         [course]="course$ | async"
+        [authorsList]="authors$ | async"
         (newCourse)="onCreateNewCourse($event)"
         (cancel)="onCancel()"
     ></app-add-course-form>

@@ -5,17 +5,18 @@
             class="form-field-lable"
         >
             Duration:
-            <span class="required-msg">* required</span>
+            <span class="required-msg" *ngIf="validationMsg; else requiredMsg">{{ validationMsg }}</span>
+        <ng-template #requiredMsg>
+            <span class="required">* required</span>
+        </ng-template>
         </label>
-        <input
+        <input [class.has-error-duration]="validationMsg"
             type="number"
             id="duration"
             class="form-field-input"
             placeholder="minutes"
-            [ngModel]="courseDuration"
-            (ngModelChange)="onDurationChange($event)"
-            required
-        >
+            [placeholder]="placeholder"
+            [formControl]="formControl"/>
     </div>
-    <p class="duration-calcel-page">{{ courseDuration }} min.</p>
+    <p class="duration-expl">{{ formControl.value | duration }}</p>
 </div>
