@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Course, Token, UserInfo, UserLogin } from "src/app/models";
-import { Observable } from "rxjs";
-import { RequestBody } from "src/app/models/request-body.model";
-import { GlobalConstants } from "src/app/shared/constans/global-constants";
+import { Course, Token, UserInfo, UserLogin } from 'src/app/models';
+import { Observable } from 'rxjs';
+import { RequestBody } from 'src/app/models/request-body.model';
+import { GlobalConstants } from 'src/app/shared/constans/global-constants';
 
 @Injectable({
 	providedIn: 'root'

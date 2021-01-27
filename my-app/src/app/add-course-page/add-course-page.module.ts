@@ -9,10 +9,11 @@ import { LogInButtonModule } from '../shared/components/log-in-button';
 import { CoursesPageModule } from '../courses-page';
 import { FakeLogoModule } from '../shared/components/fake-logo';
 import { AddCourseFormComponent } from './add-course-form';
-import { CourseAuthorsComponent } from './course-authors';
 import { CourseDateComponent } from './course-date';
 import { CourseDurationComponent } from './course-duration';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
+import { AutocompleteSelectModule } from '../shared/components/autocomplete-select/autocomplete-select.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,6 @@ import { RouterModule } from '@angular/router';
     AddCourseFormComponent,
     CourseDateComponent,
     CourseDurationComponent,
-    CourseAuthorsComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +32,8 @@ import { RouterModule } from '@angular/router';
     CoursesPageModule,
     FakeLogoModule,
     RouterModule,
+    SharedModule,
+    AutocompleteSelectModule
   ],
   exports: [AddCoursePageComponent],
 })

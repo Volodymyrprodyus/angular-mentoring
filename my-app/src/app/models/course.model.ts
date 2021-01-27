@@ -1,3 +1,4 @@
+import { ListOption } from './list-options.model';
 
 export interface ICourse {
     id: number;
@@ -5,10 +6,7 @@ export interface ICourse {
     date: string;
     length: number;
     description: string;
-    authors?: {
-        id?: number;
-        name?: string;
-    };
+    authors?: ListOption[];
     isTopRated?: boolean;
 }
 
@@ -19,10 +17,7 @@ export class Course implements ICourse {
         public date: string,
         public length: number,
         public description: string,
-        public authors?: {
-            id?: number;
-            name?: string;
-        },
+        public authors?: ListOption[],
         public isTopRated?: boolean,
     ) {}
 }

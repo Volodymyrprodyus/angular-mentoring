@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   get password(): AbstractControl {
     return this.loginForm.get('password');
   }
-  
+
   constructor(private fb: FormBuilder, private contextStoreFacadeService: ContextStoreFacadeService) {}
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     const userData = {
       login: this.login.value,
       password: this.password.value
-    }
+    };
 
     this.contextStoreFacadeService.dispatchLogIn({ userData });
   }

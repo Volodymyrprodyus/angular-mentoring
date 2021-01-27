@@ -1,0 +1,39 @@
+<div class="form-group" [formGroup]="formGroup" [class.has-error]="validationMsg">
+    <label for="options" class="form-lable">{{ label }}: 
+        <span class="required-msg" *ngIf="validationMsg; else requiredMsg">{{ validationMsg }}</span>
+        <ng-template #requiredMsg>
+            <span class="required">* required</span>
+        </ng-template>
+    </label>
+    <div id="options" class="form-input">
+        <div class="option-selected" formArrayName="OptionsFormArray" *ngFor="let value of OptionsFormArray?.controls; index as i">
+            <input type="text" [formControlName]="i">
+            <img src="assets/icons/ic_close.svg" alt="img" class="delete-icon" (click)="onselectedDelete(i)"/>
+        </div>
+        <div class="text-input-container">
+            <div class="text-search-field">
+                <img src="assets/svg/search.svg" alt="img" class="search-icon"/>
+                <input type="text"
+                    placeholder="{{ placeholder }}"
+                    [(ngModel)]="inputValue"
+                    [ngModelOptions]="{standalone: true}"
+                    autocomplete="off"
+                    autofocus
+                    (input)="onSearch()">
+            </div>
+            <div class="autocomplete-panel"
+            [class.autocomplete-panel--shown]="isAutocompleteOptionsShown">
+            <div class="autocomplete-panel-option"
+                *ngFor="let option of filteredOptions"
+                (click)="selectOption(option)">
+                {{ option[labelField] || option }}
+            </div>
+            <div class="autocomplete-panel-option"
+                *ngIf="!isMatch"
+                (click)="selectNoMatch(inputValue)">
+                No Match, Add '{{ inputValue }}'
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

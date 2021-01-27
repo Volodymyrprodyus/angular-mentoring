@@ -1,0 +1,141 @@
+:host {
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+
+    .text-input-container {
+
+        .text-search-field {
+            display: flex;
+            align-items: center;
+            border: 1px solid gray;
+            width: 100%;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        input {
+            border: 0;
+            caret-color: rgb(0, 47, 255);
+            background-color: white;
+            color: black;
+
+            &:focus {
+                outline: none;
+            }
+
+            width: 100%;
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+            letter-spacing: 0.05px;
+        }
+
+        input[type='text' i] {
+            padding: 0 2px;
+        }
+    }
+
+    .autocomplete-panel {
+        display: none;
+
+        &::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+
+        &--shown {
+            position: absolute;
+            z-index: 999;
+            max-height: 300px;
+            width: 25%;
+            overflow: auto;
+            display: block;
+            border-radius: 2px;
+            background-color: darkgray;
+            box-shadow: 0 4px 10px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        &-option {
+            font-size: 16px; 
+            color: black;
+
+            text-transform: capitalize;
+            line-height: 18px;
+            letter-spacing: 0.05px;
+            padding: 12px 10px;
+            cursor: pointer;
+        }
+
+        &-option:hover {
+            border: 1px solid white;
+            color: white;
+        }
+    }
+}
+
+.form-group {
+    width: 75%;
+}
+
+.form-input {
+    font-family: var(--my-font-family);
+    max-height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-between;
+}
+
+.form-lable {
+    font-family: var(--my-font-family);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.option-selected {
+    display: flex;
+    align-items: center;
+}
+.delete-icon {
+    margin: 6px 10px;
+    width: 16px;
+    height: 16px;
+}
+
+.search-icon {
+    background-color: white;
+    margin: 5px;
+    width: 16px;
+    height: 16px;
+}
+
+.has-error {
+    border: 1px solid rgb(192, 24, 18);
+}
+
+
+.required-msg {
+    margin-left: 85px;
+    font-weight: normal;
+    color: rgb(192, 24, 18);
+}
+
+.required {
+    margin-left: 85px;
+    line-height: 24px;
+    color:rgb(192, 24, 18);
+    font-size: 12px;
+    font-family: var(--my-font-family);
+    text-align: right;
+    font-weight: normal;
+}
